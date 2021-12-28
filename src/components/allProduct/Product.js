@@ -20,12 +20,20 @@ function Product(props) {
                     <span className="price2">{formatPrice(product.price)}đ</span>
                 </div>
             </a>
-            <div className="discount">
+            {/* <div className="discount">
+                <p>{product.percentDiscount}%</p>
+            </div> */}
+              <div className="discount-url">
                 <p>{product.percentDiscount}%</p>
             </div>
-            <div className="buy">
+            {
+                product.amount == 0 ? (<div className="buy">
+                    <a href="" > Hết Hàng</a>
+                </div>) : (
+                <div className="buy">
                 <a href="/cart" onClick={() => AddToCart(product)}> Mua Ngay</a>
-            </div>
+            </div>)
+            }
         </div>
     );
 }

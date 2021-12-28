@@ -27,7 +27,7 @@ function Chat(props) {
   }, [idConversation]);
 
   useEffect(() => {
-    console.log('csndcasucaodnoa')
+    //console.log('csndcasucaodnoa')
     socket = io(ENDPOINT);
 
     socket.emit("admin_join_conversation", idConversation);

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderShippingByUser } from "../../../../actions/OrderAction";
-import {formatPrice} from '../../../../untils/index'
+import {formatPrice,timeSince} from '../../../../untils/index'
 
 
 const orderItem = (item) => (
@@ -21,6 +21,7 @@ export const orderParent = (item) => (
   <div className="all-myorder-parent-item">
     <div className="all-myorder-list">
       {item.orderItems.map((item) => orderItem(item))}
+      <span style={{marginRight:"49rem"}}>{timeSince(new Date(item.createdAt).getTime()/1000)} trước</span>
     </div>
     <div className="all-myorder-item-totalprice">
       <span>Tổng số tiền : </span> <strong>{formatPrice(item.totalPrice)}đ</strong>

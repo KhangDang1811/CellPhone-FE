@@ -14,12 +14,12 @@ import Payment from "./Payment";
 function Order(props) {
 
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const allProvince = useSelector((state) => state.address.province);
   const allDistrict = useSelector((state) => state.address.district);
   const allWard = useSelector((state) => state.address.ward);
-  console.log('all ward', allWard)
+  //console.log('all ward', allWard)
 
   const [listProvince, setListProvince] = useState(false);
   const [listDistrict, setListDistrict] = useState(false);
@@ -44,7 +44,7 @@ function Order(props) {
   };
 
   const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log(cartItems);
+ 
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.qty * item.salePrice,
     0
@@ -117,7 +117,7 @@ function Order(props) {
               <input
                 placeholder="Số điện thoại"
                 {...register("phone")}
-                required
+                onKeyPress={(e) => {if(!e.key.match(/[a-zA-Z0-9]/)) e.preventDefault()}}
               ></input>
             </div>
           </div>
@@ -246,6 +246,7 @@ function Order(props) {
           </div>
           <Payment></Payment>
         </form>
+       
       </div>
     </section>
   );

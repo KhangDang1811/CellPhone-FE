@@ -17,6 +17,7 @@
     text-align: left;
     font-size: 16px;
     font-weight: 500;
+    display: grid;
 }
 .all-myorder-item-name {
     padding-left: 1rem;

@@ -2,7 +2,8 @@ import axios from "axios";
 let config = {
   headers: {
     "Content-Type": "application/json",
-    'Token': "b1e1bbcb-ef7f-11eb-9388-d6e0030cbbb7",
+    'Token': "238e3e39-63f9-11ec-ac64-422c37c6de1b",
+    // 'Token':"5a60bce1-63f4-11ec-9054-0a1729325323",
   },
 };
 
@@ -72,6 +73,24 @@ export const getAllOrder = () => async (dispatch, getState) => {
       },
     });
     dispatch({ type: "GET_ALL_ORDER", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllOrderMonth = (month) => async (dispatch, getState) => {
+  try {
+    // const {
+    //   userSignin: { userInfo },
+    // } = getState();
+    const { data } = await axios.get(`http://localhost:5000/order/allOrderInAMonth/${month}`
+    //const { data } = await axios.get("http://localhost:5000/order/allOrderInAMonth",month
+      // headers: {
+      //   Authorization: `Bearer ${userInfo.token}`,
+      // },
+    //}
+    );
+    dispatch({ type: "GET_ALL_ORDER_MONTH", payload: data });
   } catch (error) {
     console.log(error);
   }
@@ -226,7 +245,7 @@ export const GetAllProvince = () => async (dispatch, getState) => {
 export const GetAllDistrict = (provinceId) => async (dispatch, getState) => {
   const newConfig = {
     headers: {
-      Token: "b1e1bbcb-ef7f-11eb-9388-d6e0030cbbb7"
+     Token: "b1e1bbcb-ef7f-11eb-9388-d6e0030cbbb7"
     },
     params: {
       province_id: provinceId

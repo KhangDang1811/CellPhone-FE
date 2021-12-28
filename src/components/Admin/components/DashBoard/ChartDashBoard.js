@@ -6,11 +6,11 @@ import { getAllOrder } from "../../../../actions/OrderAction";
 
 export default function ChartDashBoard() {
   const dispatch = useDispatch()
-  const allOrder = useSelector(state => state.allOrder.order)
-
+  const allOrder = useSelector(state => state?.allOrder?.order)
+  //console.log(allOrder);
   const numberOfOrdersOnMonth = (month) => {
     if(allOrder){
-      return allOrder.filter((order) => {
+      return Object.values(allOrder).filter((order) => {
         const allOrder = new Date(order.createdAt).getMonth();
         if (allOrder + 1 === month) {
           return order;
@@ -19,7 +19,7 @@ export default function ChartDashBoard() {
     }
     return
   };
-
+  
   useEffect(() => {
     dispatch(getAllOrder())
   }, [dispatch])
@@ -28,7 +28,7 @@ export default function ChartDashBoard() {
     series: [{
         name: 'Monthly bill',
         data: [
-          numberOfOrdersOnMonth(1) + 7,
+          numberOfOrdersOnMonth(1) + allOrder?.length,
           numberOfOrdersOnMonth(2) + 4,
           numberOfOrdersOnMonth(3) + 7,
           numberOfOrdersOnMonth(4)+ 5,

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderByUser } from "../../../../actions/OrderAction";
-import {formatPrice} from '../../../../untils/index'
+import {formatPrice, timeSince} from '../../../../untils/index'
+
 import "./AllOrder.css";
 
 const orderItem = (item) => (
@@ -21,7 +22,9 @@ export const orderParent = (item) => (
   <div className="all-myorder-parent-item">
     <div className="all-myorder-list">
       {item.orderItems.map((item) => orderItem(item))}
+      <span style={{marginRight:"49rem"}}>{timeSince(new Date(item.createdAt).getTime()/1000)} trước</span>
     </div>
+
     <div className="all-myorder-item-totalprice">
       <div>
         <span>Tổng số tiền : </span> <strong>{formatPrice(item.totalPrice)}đ</strong>
@@ -33,7 +36,7 @@ export const orderParent = (item) => (
 function AllOrder(props) {
   const dispatch = useDispatch();
   const { myOrders } = useSelector((state) => state.orderByUser);
-  
+  //console.log(myOrders);
   const { userInfo } = useSelector((state) => state.userSignin);
   useEffect(() => {
     dispatch(getOrderByUser(userInfo._id));

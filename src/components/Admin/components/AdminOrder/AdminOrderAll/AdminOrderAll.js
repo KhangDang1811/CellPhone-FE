@@ -1,18 +1,28 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllOrder } from "../../../../../actions/OrderAction";
+import { getAllOrder, getAllOrderMonth } from "../../../../../actions/OrderAction";
 import ListOrder from "../AdminOrderUI/ListOrder";
 
 function AdminOrderAll(props) {
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.allOrder.order);
+  const {month} = props;
+ 
+   const orders = useSelector((state) => state.allOrder.order);
+  //const orders = useSelector((state) => state.allOrder.orderMonth);
+  //console.log("orderMonth",orders);
   const { orderGhnInfo } = useSelector((state) => state.orderGhn);
   const orderGhn = useSelector(state => state.orderGhn)
   
 
+  // useEffect(() => {
+  //    dispatch(getAllOrder());
+  // }, []);
+  
+  //getAllOrderMonth(month)
   useEffect(() => {
-    dispatch(getAllOrder());
-  }, []);
+    dispatch(getAllOrderMonth(month));
+  }, [month]);
 
 
   return (

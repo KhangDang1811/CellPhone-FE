@@ -10,7 +10,7 @@ function ListProduct(props) {
     const currentPage = useSelector(state => state.allProduct.currentPage)
     const {pages} = useSelector(state => state.allProduct.product)
 
-    const HandleChangePage = async (number) => {
+    const HandleChangePage = async (number,max) => {
         await dispatch(paginationProduct(number))
         dispatch(editCurrentPage(number))
     }

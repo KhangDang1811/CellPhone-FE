@@ -12,8 +12,7 @@ export const ChatReducer = (state = {}, action) => {
             const arr = [...state.conversationList]
             const index = arr.findIndex(item => item.idUser === action.payload.idUser)
             arr[index] = action.payload
-            
-            return {...state, conversationList: arr};
+            return {...state, conversationList: arr.slice(0,15)};
         }
 
         case 'SHOW_CONVERSATION':{

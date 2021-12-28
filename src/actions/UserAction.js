@@ -1,4 +1,28 @@
 import axios from 'axios'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {authentications} from './fire'
+
+export const SignInGoogle =() => async(dispatch) => {
+  const provider = new GoogleAuthProvider();
+  const postData = authentications.currentUser
+  //const {data} = await axios.post('http://localhost:5000/user/google', postData)
+  const Data = {email:postData?.email, password:postData?.auth?.config?.apiKey}
+  const {data} = await axios.post('http://localhost:5000/user/google', Data)
+
+    signInWithPopup(authentications, provider)
+    .then(result => {
+     dispatch({type : 'USER_LOGIN_SUCCESS', payload :data})
+     localStorage.setItem('userInfo', JSON.stringify(data)) 
+    }
+    )
+    .catch(error => {
+      console.log(error)
+      dispatch({type : 'SIGN_IN_GOOGLE_ERROR', payload : error})
+    }
+    )
+    // await axios.post('http://localhost:5000/user/google', postData)
+}
+
 
 export const login = (user) => async (dispatch) => {
     try {
@@ -21,7 +45,8 @@ export const SignupUser = (user) => async (dispatch) => {
       dispatch({ type: 'USER_SIGNUP_SUCCESS', payload: data });
       document.location.href = '/';
     } catch (error) {
-       console.log(error)
+      console.log(error.response.data.message)
+      dispatch({ type: 'USER_SIGNUP_FAIL', payload: error.response.data.message });
     }
 };
 
@@ -30,6 +55,7 @@ export const SignoutUser = (user) => async (dispatch) => {
   dispatch({type: 'USER_SIGNOUT_SUCCESS', payload: {} })
   document.location.href = '/';
 };
+
 
 export const getAllUser = () => async (dispatch, getState) => {
   const {
@@ -55,3 +81,4 @@ export const deleteUser = (userId) => async (dispatch, getState) => {
     dispatch({type: 'DELETE_USER_FAIL', error: error.message})
   }
 }
+

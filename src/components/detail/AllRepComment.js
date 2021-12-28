@@ -13,7 +13,8 @@ function AllRepComment(props) {
             <div className="all-comment-info">
               {repComment.isAdmin ? (
                 <div className="all-comment-info-name admin">
-                  <img src="https://cellphones.com.vn/skin/frontend/default/cpsdesktop/images/media/logo.png"></img>
+                   <img src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.15752-9/259051801_203473488614542_5714197839701142783_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=FSKk0GXoOkwAX_VhKfI&_nc_ht=scontent.fsgn8-2.fna&oh=bd4c8ef53a52765cdd1254fd15a7afde&oe=61C7C5EC"></img>
+                  {/* <img src="https://cellphones.com.vn/skin/frontend/default/cpsdesktop/images/media/logo.png"></img> */}
                 </div>
               ) : (
                 <div className="all-comment-info-name">

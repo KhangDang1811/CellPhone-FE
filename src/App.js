@@ -14,6 +14,7 @@ import MyOrderPage from './pages/MyOrderPage';
 import ChatPage from './pages/ChatPage';
 import PaymentPage from './pages/PaymentPage';
 import OrderSuccessPage from './pages/OrderSuccessPage'
+import LoadingBox from './components/Loading/LoadingBox';
 
 function App() {
   return (
@@ -70,6 +71,9 @@ function App() {
           <AdminPage></AdminPage>
         </Route>
 
+        <Route path='/loading'>
+         <LoadingBox/>
+        </Route>
 
       </Router>
     </div>

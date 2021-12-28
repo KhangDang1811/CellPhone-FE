@@ -5,6 +5,7 @@ import { PayPalButton } from "react-paypal-button-v2";
 import { createOrder, payOrder } from "../../actions/OrderAction";
 import { useHistory } from "react-router-dom";
 import VnPay from "./VnPay";
+import { UpdateAmountProduct } from "../../actions/ProductAction";
 
 export default function Payment() {
   const history = useHistory();
@@ -17,7 +18,6 @@ export default function Payment() {
 
   const { order } = useSelector((state) => state.orderInfo);
 
-
   const payLater = () => {
     setChoosePay({ payOnline: false, payLater: true });
   };
@@ -25,7 +25,31 @@ export default function Payment() {
   const payOnline = () => {
     setChoosePay({ payLater: false, payOnline: true });
   };
-
+  
+  const postData =  order?.orderItems.map((item) => ({id:item._id,qty:item.qty}))
+  
+  const SendOrderPayLater = async () => {
+    //If you do not fill in the information completely, please notify the customer to fill in the information completely.
+    if (!order) {
+      alert("Bạn hãy nhập đầy đủ thông tin");
+      return;
+    }
+    //If the phone number is not 10 characters, please notify the customer to fill in the phone number correctly.
+    if (order.shippingAddress.phone.length !== 10) {
+      alert("Số điện thoại không hợp lệ");
+      return;
+    }
+    const OrderPaid = {
+      ...order,
+      status: "pendding",
+      paymentMethod: "payLater",
+    };
+    await dispatch(createOrder(OrderPaid))
+      //Update amount product
+    await dispatch(UpdateAmountProduct(postData));
+    history.push("/orderSuccess");
+  };
+  
   const successPaymentHandler = async (paymentResult) => {
     const OrderPaid = {
       ...order,
@@ -34,17 +58,7 @@ export default function Payment() {
       paymentResult: {...paymentResult},
     };
     await dispatch(createOrder(OrderPaid));
-    history.push("/orderSuccess");
-  };
-
-  const SendOrderPayLater = async () => {
-    const OrderPaid = {
-      ...order,
-      status: "pendding",
-      paymentMethod: "payLater",
-    };
-
-    await dispatch(createOrder(OrderPaid))
+    await dispatch(UpdateAmountProduct(postData));
     history.push("/orderSuccess");
   };
 
@@ -61,9 +75,9 @@ export default function Payment() {
         setSdkReady(true);
       };
       document.body.appendChild(script);
-
-      addPayPalScript();
     };
+    addPayPalScript();
+  
   }, []);
   return (
     <div className="choose-pay">
@@ -83,6 +97,7 @@ export default function Payment() {
         >
           Thanh toán Online
         </button>
+        
       </div>
       {choosePay.payLater ? (
         <div className="customer-order">

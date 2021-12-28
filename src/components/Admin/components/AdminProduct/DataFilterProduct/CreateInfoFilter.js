@@ -56,7 +56,7 @@ export default function CreateInfoFilter() {
       <span>Create select product</span>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input {...register("name")} placeholder="Name ... " />
-          <input {...register("property")} placeholder="Property ..." />
+          <input {...register("property")} placeholder="property ..." />
           <div className="option-list">
             {addOption.map((option, index) => (
               <div className="option-list-item" key={index}>

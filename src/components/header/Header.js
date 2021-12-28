@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Header.css";
-import { SignoutUser } from "../../actions/UserAction";
+import { SignoutUser,SignOutGoogle } from "../../actions/UserAction";
 import { useHistory } from "react-router";
 import { searchProduct } from "../../actions/ProductAction";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ function Header(props) {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, error } = userSignin;
-  console.log(userInfo);
+  console.log("info-",userInfo);
   const [search, setSearch] = useState("");
   const cartItems = useSelector((state) => state.cart.cartItems);
   const amount = cartItems.reduce((a, b) => a + b.qty, 0);
@@ -31,7 +31,7 @@ function Header(props) {
   const [menu, setMenu] = useState(true);
 
   const handleSignout = () => {
-    console.log("dang xat");
+    //console.log("dang xat");
     dispatch(SignoutUser());
   };
 
@@ -72,8 +72,18 @@ function Header(props) {
           </li>
           {userInfo ? (
             <li onClick={() => setShowAccount2(!showAccount2)}>
+              {
+                userInfo?.reloadUserInfo?.photoUrl  ?
+                ( <img className="profile-picture" src={userInfo.reloadUserInfo.photoUrl }/>):("")
+              }
+                {
+                userInfo?.profilepicture  ?
+                ( <img className="profile-picture" src={userInfo.profilepicture }/>):("")
+              }
+             
               <Link>
-                {userInfo.name}
+                {userInfo.name || userInfo.displayName}
+                
                 <DownOutlined style={{ fontSize: "14px" }} />
               </Link>
               {showAccount2 ? (

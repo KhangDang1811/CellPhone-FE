@@ -9,15 +9,18 @@ Product.propTypes = {
 function Product(props) {
     const { product } = props
     const dispatch = useDispatch()
-
+    //console.log(product);
     function handleDeleteProduct(product) {
         const action = DeleteToCart(product)
         dispatch(action);
     }
 
     function handleAddProduct(product) {
-        const action = AddToCart(product)
-        dispatch(action)
+        // const action = AddToCart(product)
+        // dispatch(action)
+      {
+          product.qty == product.amount ? alert('Số lượng sản phẩm không đủ') : dispatch(AddToCart(product))
+      }
     }
 
     function handleProductOut(product) {

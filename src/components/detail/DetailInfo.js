@@ -7,7 +7,7 @@ import {formatPrice} from '../../untils/index'
 function DetailInfo(props) {
     const dispatch = useDispatch()
     const { product } = props;
-    
+ 
     function handleAddProduct(product) {
         const action = AddToCart(product)
         dispatch(action)
@@ -27,19 +27,26 @@ function DetailInfo(props) {
 
             <div className="detail-info-right-buy">
                 <div className="detail-info-right-buy-now">
-                    <Link to="/cart" onClick={() => handleAddProduct(product)}>
-                        <strong>MUA NGAY</strong>
-                        <br></br>
-                        <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
-                    </Link>
+                   {
+                       product.amount === 0 ? (<>
+                       <Link to="" > Hết Hàng</Link>
+                       <br></br>
+                       <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
+                       </>                       ) : 
+                       ( <Link to="/cart" onClick={() => handleAddProduct(product)}>
+                       <strong>MUA NGAY</strong>
+                       <br></br>
+                       <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
+                   </Link>)
+                   }
                 </div>
                 <div className="detail-info-right-buy-installment">
-                    <a href="">
+                    <a >
                         <strong>TRẢ GÓP 0%</strong>
                         <br></br>
                         <span>(Xét duyệt qua điện thoại)</span>
                     </a>
-                    <a href="">
+                    <a >
                         <strong>TRẢ GÓP QUA THẺ</strong>
                         <br></br>
                         <span>(Visa, Master, JCB)</span>

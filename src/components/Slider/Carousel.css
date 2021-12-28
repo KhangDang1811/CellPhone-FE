@@ -22,6 +22,7 @@
 }
 .carousel-left-slide img{
     width: 100%;
+    border-radius: 8px;
 }
 .carousel-left-slide:hover .prev{
     transform: translateX(0);
@@ -94,6 +95,7 @@
 .carousel-right-item img{
     width: 100%;
     height: 140px;
+    border-radius: 8px;
 }
 
 @media screen and (max-width: 800px){

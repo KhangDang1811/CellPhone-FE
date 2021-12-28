@@ -33,7 +33,7 @@ function AppChat(props) {
     socket.emit('join_conversation', userInfo._id);
     //setup response
     socket.on('newMessage', (message) => {
-      console.log([...messages])
+     // console.log([...messages])
       setMessages([...messages, message]);
     });
 
@@ -53,13 +53,13 @@ function AppChat(props) {
   })
 
   const handleChatFormSubmit = async (message) => {
-    console.log(message)
+   // console.log(message)
     const sender = userInfo.name;
-    console.log(messages.length)
+   // console.log(messages.length)
 
     //emit create conversation and chat
     if (messages.length === 0) {
-      console.log('create')
+      //console.log('create')
       socket.emit('create_conversation', userInfo);
 
       socket.on('response_room', async (conversation) => {
@@ -70,7 +70,7 @@ function AppChat(props) {
         };
         console.log(payload)
         const {data} = await axios.post('http://localhost:5000/chat/save', payload);
-        console.log(data)
+        //console.log(data)
         socket.emit('chat', data);
       });
     } else {
@@ -82,9 +82,9 @@ function AppChat(props) {
         message,
         idConversation,
       };
-      console.log(payload, 'sdbhuca')
+      //console.log(payload, 'sdbhuca')
       const {data} = await axios.post('http://localhost:5000/chat/save', payload)
-      console.log(data)
+      //console.log(data)
       socket.emit('chat', data);
     } 
   };

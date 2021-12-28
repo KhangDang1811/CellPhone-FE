@@ -274,3 +274,7 @@
         margin:10px 0;
     }
 }
+
+.errors{
+    color: red;
+}

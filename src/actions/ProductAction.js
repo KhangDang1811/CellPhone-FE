@@ -15,7 +15,7 @@ export const filterProductByType = (name) => async (dispatch) => {
 
 export const filterProductByRandomField = (infoProduct) => async (dispatch) => {
   try {
-    console.log(infoProduct)
+    //console.log("property",infoProduct)
     const { data } = await axios.post(`${BASE_URL}/products/filter/random`, infoProduct);
     dispatch({ type: "FILTER_PRODUCT_BY_RANDOM_FIELD", payload: data });
   } catch (error) {
@@ -87,40 +87,110 @@ export const removeProductById = (id) => async (dispatch) => {
 
 export const saveProduct = (product) => async (dispatch, getState) => {
   
-  try {
-    const {
-      userSignin: { userInfo },
-    } = getState();
-    if (!product.get('_id')) {
-      console.log("create");
+   try {
+  //   const {
+  //     userSignin: { userInfo },
+  //   } = getState();
+  //   if (!product.get('_id')) {
+  //     console.log("create");
       const { data } = await axios.post(
         "http://localhost:5000/products/create",
-        product,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        }
+        product
+        ,
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${userInfo.token}`,
+        //   },
+        // }
       );
       dispatch({ type: "SAVE_PRODUCT", payload: data });
       // document.location.href = '/admin/product';
-    } else {
-      console.log("update");
-      const { data } = await axios.put(
-        `http://localhost:5000/products/update`,
-        product,
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        }
-      );
-      dispatch({ type: "SAVE_PRODUCT", payload: data });
-      // document.location.href = '/admin/product';
-    }
+    // } else {
+    //   console.log("update");
+    //   const { data } = await axios.put(
+    //     `http://localhost:5000/products/update`,
+    //     product,
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${userInfo.token}`,
+    //       },
+    //     }
+    //   );
+    //   dispatch({ type: "SAVE_PRODUCT", payload: data });
+    //   // document.location.href = '/admin/product';
+    // }
   } catch (error) {
     dispatch({ type: "SAVE_PRODUCT_FAIL", payload: error.message });
   }
+};
+
+export const UpdateProduct = (productId,postData) => async (dispatch, getState) => {
+  try {
+     const { data } = await axios.put(
+      `http://localhost:5000/products/update/${productId}`,
+      postData
+       ,
+       // {
+       //   headers: {
+       //     Authorization: `Bearer ${userInfo.token}`,
+       //   },
+       // }
+     );
+    
+     dispatch({ type: "UPDATE_PRODUCT", payload: data });
+ } catch (error) {
+   dispatch({ type: "UPDATE_PRODUCT_FAIL", payload: error.message });
+ }
+};
+
+export const UpdateProductDel = (postData) => async (dispatch, getState) => {
+  try {
+     const { data } = await axios.put(
+      "http://localhost:5000/products/updateDel",
+      postData
+       ,
+       // {
+       //   headers: {
+       //     Authorization: `Bearer ${userInfo.token}`,
+       //   },
+       // }
+     );
+    
+     dispatch({ type: "UPDATE_PRODUCT_DELETE", payload: data });
+ } catch (error) {
+   dispatch({ type: "UPDATE_PRODUCT_DELETE_FAIL", payload: error.message });
+ }
+};
+
+export const UpdateAmountProduct = (postData) => async (dispatch, getState) => {
+  try {
+     const { data } = await axios.put(
+      `http://localhost:5000/products/amount`,
+      postData
+       ,
+       // {
+       //   headers: {
+       //     Authorization: `Bearer ${userInfo.token}`,
+       //   },
+       // }
+     );
+     dispatch({ type: "UPDATE_PRODUCT_AMOUNT", payload: data });
+ } catch (error) {
+   dispatch({ type: "UPDATE_PRODUCT_AMOUNT_FAIL", payload: error.message });
+ }
+};
+
+export const LikeComment = (commentId,type) => async (dispatch, getState) => {
+  try {
+     const { data } = await axios.put(
+      `http://localhost:5000/products/${commentId}/changelikes`,
+      type
+       ,
+     );
+     dispatch({ type: "LIKECOMMENT_PRODUCT", payload: data });
+ } catch (error) {
+   dispatch({ type: "LIKECOMMENT_PRODUCT_FAIL", payload: error.message });
+ }
 };
 
 export const DeleteProduct = (productId) => async (dispatch, getState) => {

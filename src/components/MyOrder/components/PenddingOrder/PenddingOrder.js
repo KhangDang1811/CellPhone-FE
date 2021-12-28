@@ -4,18 +4,20 @@ import {
   cancelOrder,
   getOrderPenddingByUser,
 } from "../../../../actions/OrderAction";
-import { formatPrice } from "../../../../untils/index";
+import { formatPrice,timeSince } from "../../../../untils/index";
 import "./PenddingOrder.css";
 
 function PenddingOrder(props) {
   const dispatch = useDispatch();
   const { myOrdersPendding } = useSelector((state) => state.orderByUser);
+  
   const { userInfo } = useSelector((state) => state.userSignin);
 
   const orderParent = (item) => (
     <div className="all-myorder-parent-item">
       <div className="all-myorder-list">
         {item.orderItems.map((item) => orderItem(item))}
+        <span style={{marginRight:"49rem"}}>{timeSince(new Date(item.createdAt).getTime()/1000)} trước</span>
       </div>
       <div className="all-myorder-item-totalprice">
         {item.paymentMethod === "payOnline" ? (
@@ -48,7 +50,7 @@ function PenddingOrder(props) {
   );
 
   const handleCancelOrder = async (item) => {
-    console.log(item);
+    //console.log(item);
     await dispatch(cancelOrder(item._id));
     dispatch(getOrderPenddingByUser(userInfo._id));
   };

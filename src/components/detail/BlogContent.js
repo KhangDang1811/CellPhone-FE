@@ -27,8 +27,16 @@ function BlogContent(props) {
                 Xem Thêm đánh giá
               </div>
             ) : (
-              ""
-            )}
+              <div
+                className="blog-showmore"
+                onClick={() => {
+                  setStyleBlog({ height: "500px" });
+                  setShowMoreBlog(!showMoreBlog);
+                }}
+              >
+                Thu gọn đánh giá
+              </div>
+          )}
           </div>
         </div>
       ) : (

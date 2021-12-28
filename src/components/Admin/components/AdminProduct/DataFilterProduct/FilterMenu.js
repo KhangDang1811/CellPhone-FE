@@ -121,12 +121,12 @@ export default function FilterMenu() {
             >
               <input
                 {...register("name")}
-                placeholder="Name ... "
+                placeholder="Property ... "
                 defaultValue={chooseSelectItem.name}
               />
               <input
                 {...register("property")}
-                placeholder="Property ..."
+                placeholder="Name ..."
                 defaultValue={chooseSelectItem.property}
               />
               <div className="option-list">

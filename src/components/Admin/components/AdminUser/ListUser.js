@@ -4,7 +4,7 @@ import User from './User';
 
 function ListUser(props) {
     const {users} = props
-
+    console.log(users);
     return (
         <div className="admin-user-list">
             <table>

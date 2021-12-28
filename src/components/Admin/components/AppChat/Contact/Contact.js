@@ -33,7 +33,7 @@ function Contact(props) {
         socket = io(ENDPOINT)
 
         socket.on('lastMessage', async data => {
-            console.log(data)
+           // console.log(data)
             await dispatch(updateLastMessageConversation(data))
             dispatch(getAllConversationList())
         })
@@ -46,7 +46,7 @@ function Contact(props) {
     }, [])
 
     const onConversationClick = (conversation) => {
-        console.log('conversation: click', conversation._id)
+        //console.log('conversation: click', conversation._id)
         dispatch(updateIdConversation(conversation))
     }
     return (

@@ -15,7 +15,7 @@ function FilterProduct(props) {
   const FilterProductByPrice =  (a, b) => {
     let startPrice = parseInt(a);
     let endPrice = parseInt(b);
-    console.log(formatPrice(startPrice));
+    //console.log(formatPrice(startPrice));
     dispatch(filterProductByPrice(startPrice, endPrice));
   };
 
@@ -30,12 +30,15 @@ function FilterProduct(props) {
           type="number"
           id="priceStart"
           placeholder="đ TỪ"
-          onChange={(e) => setStartPrice(e.target.value)}
+           onKeyPress={(e) => {if(!e.key.match(/[a-zA-Z0-9]/)) e.preventDefault()}}  
+          onChange={(e) => setStartPrice(formatPrice)}
         ></input>
+      
         <input
           type="number"
           id="priceEnd"
           placeholder="đ ĐẾN"
+          onKeyPress={(e) => {if(!e.key.match(/[a-zA-Z0-9]/)) e.preventDefault()}}  
           onChange={(e) => setEndPrice(e.target.value)}
         ></input>
         <button onClick={() => FilterProductByPrice(startPrice, endPrice)}>

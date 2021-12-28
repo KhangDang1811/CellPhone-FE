@@ -22,9 +22,15 @@ function Product(props) {
             <div className="discount">
                 <p>{product.percentDiscount}%</p>
             </div>
-            <div className="buy">
-                <a href="/cart" onClick={() => AddToCart(product)}> Mua Ngay</a>
-            </div>
+            {
+                product.amount == 0 ? (<div className="buy">
+                    <a href="" > Hết Hàng</a>
+                </div>) : (
+                     <div className="buy">
+                     <a href="/cart" onClick={() => AddToCart(product)}> Mua Ngay</a>
+                 </div>)
+            }
+           
         </div>
     );
 }

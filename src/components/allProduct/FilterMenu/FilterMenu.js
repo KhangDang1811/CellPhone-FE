@@ -12,9 +12,11 @@ import { getAllTypeProduct } from "../../../actions/ListTypeProductAction";
 export default function FilterMenu() {
   const dispatch = useDispatch();
   const [dataFilter, setDataFilter] = useState({});
+  console.log("dataFilter", dataFilter);
   const filterMenuList = useSelector(state => state.selectList.List)
+  //console.log('list fillter',filterMenuList);
   const { List} = useSelector(state => state.allTypeProduct)
-  console.log(List)
+ //console.log("list",List)
 
   useEffect(() => {
     dispatch(filterProductByRandomField(dataFilter));
@@ -116,7 +118,9 @@ export default function FilterMenu() {
           List ? (List.map((item) => MenuFirmProduct(item))) : ''
         }
       </div>
-
+      <div className="title">
+        <p>Chọn theo tiêu chí</p>
+      </div>
       <div className="filter-menu">
         {
           filterMenuList && filterMenuList.length > 0 ? (filterMenuList.map((item) => filterMenuItemAntd(item))) : ''

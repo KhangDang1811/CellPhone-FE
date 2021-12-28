@@ -2,14 +2,14 @@
    
     min-width: 300px;
     height: 100vh;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
 }
 .sidebar-top{
     color: #1890ff;
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 1.5rem 0;
 
     display: flex;
@@ -31,7 +31,9 @@
     padding: 1rem;
 
     border-radius: 18px;
+    
     color: #6b6b6b;
+
 }
 .sidebar-list-item.active{
     background: #1890ff;
@@ -43,8 +45,10 @@
 
 .sidebar-list-item:hover{
     background: #1890ff;
+    position: relative;
     color: white;
     transition: .3s;
+    
 }
 
 .admin-order-new{

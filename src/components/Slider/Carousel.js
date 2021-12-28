@@ -72,10 +72,10 @@ function Carousel(props) {
                 <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/loa-691-301-max.png"></img>
               </div>
               <div key={2}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/1380-600-max.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/sennheiser690x300_13_.png"></img>
               </div>
               <div key={3}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/ip11-tg-690-300-max.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/ss-mngn-690-300-max.png"></img>
               </div>
               <div key={4}>
                 <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/dd690x300_XR.png"></img>
@@ -122,13 +122,13 @@ function Carousel(props) {
         </div>
         <div className="carousel-right">
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/RB_S21.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/mn-Right_Banner_Desktop_2_.png"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/iPhone_12_690x300_copyssspng.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/msi-RightBanner_Desktop_690x300_2_.png"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/11lite-690-300-max.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/A52S-RightBanner_Desktop_4_.png"></img>
           </div>
         </div>
       </div>

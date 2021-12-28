@@ -1,12 +1,13 @@
 const initialState = {
     product:[],
-    currentPage: 1
+    currentPage: 1,
+    loading:true
 }
 
 export const getAllProductReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_ALL_PRODUCT':
-            return {...state, product: action.payload}
+            return {...state, product: action.payload,loading:false}
 
         case 'GET_ALL_PRODUCT_FAIL':
             return {...state, error: action.payload}
@@ -55,6 +56,38 @@ export const getAllProductReducer = (state = initialState, action) => {
             return {...state, error: action.payload}
         }
 
+        case 'UPDATE_PRODUCT':{
+            return {...state, product: action.payload}
+        }
+
+        case 'UPDATE_PRODUCT_FAIL':{
+            return {...state, error: action.payload}
+        }
+
+        case 'UPDATE_PRODUCT_DELETE':{
+            return {...state, product: action.payload}
+        }
+
+        case 'UPDATE_PRODUCT_DELETE_FAIL':{
+            return {...state, error: action.payload}
+        }
+
+        case 'UPDATE_PRODUCT_AMOUNT':{
+            return {...state, product: action.payload}
+        }
+
+        case 'UPDATE_PRODUCT_AMOUNT_FAIL':{
+            return {...state, error: action.payload}
+        }
+
+        case 'LIKECOMMENT_PRODUCT':{
+            return {...state, product: action.payload}
+        }
+
+        case 'LIKECOMMENT_PRODUCT_FAIL':{
+            return {...state, error: action.payload}
+        }
+        
         case 'DELETE_PRODUCT':{
             return {...state, product: action.payload}
         }
@@ -64,12 +97,12 @@ export const getAllProductReducer = (state = initialState, action) => {
         }
 
         case 'EDIT_CURRENT_PAGE':{
-            return {...state, currentPage: action.payload}
+            return {...state, currentPage: action.payload,loading:true}
         }
         
         case 'PAGINATION_PRODUCT':
-            console.log(action.payload)
-            return {...state, product: action.payload}
+            //console.log(action.payload)
+            return {...state, product: action.payload,loading:false}
 
         default:
             return state

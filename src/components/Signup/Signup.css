@@ -19,6 +19,7 @@
     padding: .8rem 1.5rem;
     margin: 1rem;
     font-size: 15px;
+    border-radius: 8px;
 }
 .signup-page input[type="submit"] {
     background: #d70018;
@@ -52,4 +53,19 @@
     .form-signup input{
         font-size: 16px;
     }
+}
+
+.show_hide_signup{
+    position: absolute;
+   margin-top: -4rem;
+    right: 0.2rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 0.5rem;
+}
+
+.errors{
+    color: red;
 }

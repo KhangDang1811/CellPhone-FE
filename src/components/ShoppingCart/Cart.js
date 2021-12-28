@@ -21,7 +21,7 @@ function Cart(props) {
       if (userInfo) {
         history.push("/order");
       } else {
-        alert("ban can dang nhap");
+        alert("Đăng nhập để đặt hàng nha ông 😁");
         history.push("/login");
       }
     };

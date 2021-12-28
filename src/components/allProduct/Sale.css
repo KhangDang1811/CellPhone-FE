@@ -42,11 +42,14 @@ p{
 }
 .hotsale-listproduct-product{
     position: relative;
-    width: 20%;
+    width: 19%;
     height: 100%;
     text-align: center;
     padding: 2rem 1rem;
     border: 1px solid #eee;
+    border-radius: 8px;
+    margin-right: 10px;
+    margin-top: 1rem;
 }
 .hotsale-listproduct-product-name{
     height: 80px;
@@ -87,6 +90,16 @@ p{
     color: gray;
 }
 
+.discount-url{
+    width: 62px;
+    height: 45px;
+    background: url("https://e7.pngegg.com/pngimages/745/342/png-clipart-paper-sticker-sales-label-graphics-miscellaneous-text.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    clip-path: polygon(0 0, 100% 0, 81% 76%, 0 100%, 0% 38%);
+    left: -4px;
+}
 .discount{
     position: absolute;
     top: 5px;
@@ -175,6 +188,7 @@ p{
 #priceStart, #priceEnd{
     padding: 4px 10px;
     margin-right: 1rem;
+    border-radius: 8px;
 }
 @media screen and (max-width: 800px) {
     .hotsale{

@@ -33,7 +33,7 @@ function Sidebar(props) {
   return (
     <div className="sidebar">
       <div className="sidebar-top">
-        <img src="https://raw.githubusercontent.com/trananhtuat/tua-react-admin/main/src/assets/images/logo.png"></img>
+          <img src="https://we.race.vn/wp-content/uploads/2021/01/cellphoneS.png"></img>
       </div>
       <div className="sidebar-list">
         <Link to="/admin" className={'sidebar-list-item'}>

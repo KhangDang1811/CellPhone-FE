@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Col } from "antd";
-import { WechatOutlined, PushpinOutlined, LockOutlined  } from "@ant-design/icons";
+import { WechatOutlined, PushpinOutlined, LockOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   pinCommentProduct,
@@ -8,18 +8,23 @@ import {
 } from "../../actions/ProductAction";
 import { useParams } from "react-router-dom";
 import AllRepComment from "./AllRepComment";
-import { getFirstCharacterUser } from "../../untils";
+import {  getFirstCharacterUser } from "../../untils";
+import {SmileOutlined} from '@ant-design/icons'
+import axios from "axios";
+import { EMOJI_ICON } from "../../constants";
 
-function AllComment(props) {
+function AllComment({allComment,props}) {
   const { id } = useParams();
-  const { allComment } = props;
-  console.log("allCommet: ", allComment);
+  //const { allComment } = props;
+  console.log(allComment);
   const dispatch = useDispatch();
   const [repCmt, setRepCmt] = useState({ key: "", status: false });
   const { userInfo } = useSelector((state) => state.userSignin);
   const [repValue, setRepValue] = useState("");
-  const showRepComment = (id) => {
+
+  const showRepComment = (id,author) => {
     setRepCmt({ key: id, status: !repCmt.status });
+    setRepValue(`@${author}`);
   };
   const handleRepComment = (value) => {
     if (userInfo) {
@@ -29,7 +34,7 @@ function AllComment(props) {
         content: repValue,
         nameUser: userInfo.name,
       };
-      console.log(comment);
+      //console.log(comment);
       dispatch(repCommentProduct(id, comment));
       setRepValue("");
       setRepCmt({ key: "", status: false });
@@ -43,6 +48,21 @@ function AllComment(props) {
     dispatch(pinCommentProduct(id, UpdateComment));
   };
 
+
+ //Emoji
+ const emojiRef = useRef(null);
+const [showEmoji, setShowEmoji] = useState(false);
+const showEmojiHandler = () => {
+  setShowEmoji(!showEmoji);
+};
+
+const addEmojiHanler1 = (icon) => {
+  //show emoji in textarea
+  const newComment = repValue + icon.props.children;
+  setRepValue(newComment);
+  setShowEmoji(false);
+};
+
   return (
     <div class="all-comment">
       {allComment.map((comment) => (
@@ -50,16 +70,16 @@ function AllComment(props) {
           <Col span={18} style={{ marginTop: "1rem" }} xs={24} sm={24} md={18}>
             <div className="all-comment-info">
               <div style={{ display: "flex" }}>
-                {comment.isAdmin ? (
+                {comment?.isAdmin ? (
                   <div className="all-comment-info-name admin">
-                    <img src="https://cellphones.com.vn/skin/frontend/default/cpsdesktop/images/media/logo.png"></img>
+                    <img src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.15752-9/259051801_203473488614542_5714197839701142783_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=FSKk0GXoOkwAX_VhKfI&_nc_ht=scontent.fsgn8-2.fna&oh=bd4c8ef53a52765cdd1254fd15a7afde&oe=61C7C5EC"></img>
                   </div>
                 ) : (
                   <div className="all-comment-info-name">
                     {getFirstCharacterUser(comment.author)}
                   </div>
                 )}
-                {comment.isAdmin ? (
+                {comment?.isAdmin ? (
                   <strong>
                     {comment.author} <span>QTV</span>
                   </strong>
@@ -68,7 +88,7 @@ function AllComment(props) {
                 )}
               </div>
 
-              {userInfo.isAdmin ? (
+              {userInfo?.isAdmin ? (
                 <div className="comment-status">
                   <div
                     className="comment-status-pin"
@@ -92,10 +112,11 @@ function AllComment(props) {
               )}
             </div>
             <div className="all-comment-content">{comment.content}</div>
+            {/* React like,thuongtuong,haha,sad */}
             <div className="all-comment-more">
               <a
                 className="all-comment-more-chat"
-                onClick={() => showRepComment(comment._id)}
+                onClick={() => showRepComment(comment._id,comment.author)}
               >
                 <WechatOutlined style={{ color: "#e11b1e" }} /> <p> Trả lời</p>
               </a>
@@ -130,9 +151,21 @@ function AllComment(props) {
                   placeholder="Xin mời để lại câu hỏi, CellphoneS sẽ trả lời trong 1h từ 8h - 22h mỗi ngày."
                   rows={10}
                   cols={3}
-                  vaule={repValue}
+                  value={repValue}
                   onChange={(e) => setRepValue(e.target.value)}
                 ></textarea>
+                <div className="commentTopInputAttachItem " onClick={showEmojiHandler}>
+                    <SmileOutlined></SmileOutlined>
+                    {showEmoji && (
+                        <ul className="commentTopInputAttachEmoji" ref={emojiRef}>
+                            {EMOJI_ICON.map((icon, index) => (
+                                <li key={index} onClick={() => addEmojiHanler1(icon)}>
+                                    {icon}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
               </div>
 
               <div className="comment-send">
@@ -144,75 +177,6 @@ function AllComment(props) {
           )}
         </>
       ))}
-      {/* <Col span={18}>
-            <div className="all-comment-info">
-              <div className="all-comment-info-name">
-                C
-              </div>
-              <strong>Cao Kha Hieu</strong>
-            </div>
-            <div className="all-comment-content">
-              Ip 11 này là loại đầy đủ phụ kiện hay loại mới ko pk đi kèm thế shop
-            </div>
-            <div className="all-comment-more">
-              <a className="all-comment-more-chat" onClick={() => showRepComment()}>
-                <WechatOutlined style={{color: '#e11b1e'}}/> <p> Trả lời</p>
-              </a>
-            </div>
-            <div className="all-comment-rep-list">
-              <div className="all-comment-rep-list-item">
-
-                <div className="all-comment-info">
-                  <div className="all-comment-info-name">
-                    C
-                  </div>
-                  <strong>Cao Kha Hieu</strong>
-                </div>
-
-                <div className="all-comment-content">
-                  Ip 11 này là loại đầy đủ phụ kiện hay loại mới ko pk đi kèm thế shop
-                </div>
-
-                <div className="all-comment-more">
-                  <a className="all-comment-more-chat">
-                    <WechatOutlined style={{color: '#e11b1e'}}/> <p> Trả lời</p>
-                  </a>
-                </div>
-                
-              </div>
-              <div className="all-comment-rep-list-item">
-
-                <div className="all-comment-info">
-                  <div className="all-comment-info-name">
-                    C
-                  </div>
-                  <strong>Cao Kha Hieu</strong>
-                </div>
-
-                <div className="all-comment-content">
-                  Ip 11 này là loại đầy đủ phụ kiện hay loại mới ko pk đi kèm thế shop
-                </div>
-
-                <div className="all-comment-more">
-                  <a className="all-comment-more-chat">
-                    <WechatOutlined style={{color: '#e11b1e'}}/> <p> Trả lời</p>
-                  </a>
-                </div>
-                
-              </div>
-            </div>
-          </Col>
-          {
-            repCmt.status === true ? (
-            <Col span={18} align='start' style={{ alignItems:'center'}}>
-            <div className="comment-area" style={{display: 'flex', alignItems:'center'}}>
-              <textarea placeholder='Xin mời để lại câu hỏi, CellphoneS sẽ trả lời trong 1h từ 8h - 22h mỗi ngày.' rows={10} cols={3}></textarea>
-            </div>
-            <div className="comment-send">
-              <button>Trả lời</button>
-            </div>
-          </Col>) : ''
-          } */}
     </div>
   );
 }

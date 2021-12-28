@@ -68,6 +68,11 @@
 .admin-product-list tr .update-product:hover span{
     background: #1890ff;
     transition: .3s;
+    clip-path: polygon(50% 0%, 0 79%, 100% 80%);
+}
+.admin-product-list tr .review-product:hover span{
+    background: #4dc26a;
+    transition: .3s;
 }
 .admin-product-list tr .delete-product:hover span, .admin-product-list tr .update-product:hover span{
     color: white;
@@ -132,4 +137,18 @@
 .admin-create-product .filter-menu-firm{
     margin-top: 0;
     margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+.show_image{
+    object-fit: contain;
+    width: 100%;
+    max-height: 400px;
+}
+.close_show_image{
+    position: absolute;
+    right: 22rem;
+    cursor: pointer;
+    
 }

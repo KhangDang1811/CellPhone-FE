@@ -4,7 +4,10 @@ export const getAllOrderReducer = (state = {}, action) => {
     case "GET_ALL_ORDER": {
       return { ...state, order: action.payload };
     }
-
+    
+    case "GET_ALL_ORDER_MONTH": {
+      return { ...state, order: action.payload };
+    }
     case "REMOVE_ALL_ORDER": {
       return {};
     }
@@ -42,6 +45,14 @@ export const getAllOrderReducer = (state = {}, action) => {
     case "PAID_ORDER": {
       return { ...state, order: action.payload };
     }
+
+    // case "CREATE_ORDER_GHN": {
+    //   return { ...state, orderGHN: action.payload };
+    // }
+
+    // case "CREATE_ORDER_GHN_FAIL": {
+    //   return {...state, error: action.payload };
+    // }
 
     default:
       return state;

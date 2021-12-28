@@ -6,20 +6,35 @@ import {
   BlogProduct,
   getproductById,
 } from "../../../../../actions/ProductAction";
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
+import { message} from 'antd';
 
 export default function ReviewProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const editorRef = useRef(null);
-
+  const history = useHistory();
   const detailProduct = useSelector((state) => state.getProductById.product);
 
+  const success = () => {
+    message.success({
+        content: `Thêm review thành công`,
+        duration: 1,
+        className: 'custom-class',
+        style: {
+            position: 'absolute',
+            right: '2rem',
+            top: '2rem',
+            margin: '1rem 0'
+        },
+      });
+  };
   const log = () => {
     if (editorRef.current) {
       const blogContent = String(editorRef.current.getContent());
 
       dispatch(BlogProduct(id, { blogContent }));
+      success();
     }
   };
 

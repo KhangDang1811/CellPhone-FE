@@ -10,7 +10,7 @@ export const getAllTypeProduct = () => async (dispatch) => {
 }
 
 export const CreateNewTypeProduct = (type) => async (dispatch) => {
-    console.log(type.get('name'), type.get('img'))
+   // console.log(type.get('name'), type.get('img'))
     try {
         const {data} = await axios.post(`http://localhost:5000/typeList/create`, type)
         dispatch({type: 'CREATE_NEW_TYPE_PRODUCT', payload: data})

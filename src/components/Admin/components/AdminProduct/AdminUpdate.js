@@ -5,13 +5,17 @@ import {
   getproductById,
   removeProductById,
   saveProduct,
+  UpdateProduct,
 } from "../../../../actions/ProductAction";
 import { useHistory, useParams } from "react-router-dom";
 import { getAllSelectList } from "../../../../actions/SelectListAction";
+import FileBase from "react-file-base64"
+import axios from "axios";
 
 function AdminUpdate(props) {
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
+  //console.log(id);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -40,6 +44,10 @@ function AdminUpdate(props) {
   const handleFileImageChange = (e) => {
     setImage(e.target.files[0]);
   };
+
+  const [postData, setPostData] = useState({
+    name:"",price:"",salePrice:"",type:"",image:"",amount:"",ram:""
+  });
 
   const onSubmit = async (data) => {
     let formData = new FormData();
@@ -89,50 +97,66 @@ function AdminUpdate(props) {
     setActiveTypeproduct(name);
   };
 
+  const HandleSubMit = (e) =>{
+    e.preventDefault();
+    dispatch(UpdateProduct(id,postData));
+   //await axios.put(`http://localhost:5000/products/update/${id}`,postData)
+    history.push("/admin/product");
+  }
+
   return (
     <div className="admin-create">
       <span>Update Product</span>
       {detailProduct ? (
         <form
           className="admin-create-product"
-          onSubmit={handleSubmit(onSubmit)}
+         // onSubmit={handleSubmit(onSubmit)}
+         onSubmit={HandleSubMit}
           encType="multipart/form-data"
         >
           <input
             {...register("name")}
             placeholder="Name"
             defaultValue={detailProduct.name}
+            onChange={(e) => setPostData({...postData, name: e.target.value})}
           ></input>
           <input
             {...register("amount")}
             placeholder="Amount"
             type="number"
             defaultValue={detailProduct.amount}
+            onChange={(e) => setPostData({...postData, amount: e.target.value})}
           ></input>
           <input
             {...register("price")}
             placeholder="Price"
             type="number"
             defaultValue={detailProduct.price}
+            onChange={(e) => setPostData({...postData, price: e.target.value})}
           ></input>
           <input
             {...register("salePrice")}
             placeholder="SalePrice"
             type="number"
             defaultValue={detailProduct.salePrice}
+            onChange={(e) => setPostData({...postData, salePrice: e.target.value})}
           ></input>
-
-          <div className="filter-menu-firm">
+          <input
+          placeholder="type"
+          onChange={(e) => setPostData({...postData, type: e.target.value})}
+        ></input>
+          {/* <div className="filter-menu-firm">
           {
             List ? (List.map((item) => MenuFirmProduct(item))) : ''
           }
-          </div>
+          </div> */}
 
           {SelectList && SelectList.length > 0
             ? SelectList.map((item) => (
                 <div className="select-type">
                   <select
                     {...register(`${item.property}`)}
+                    onChange={(e) => setPostData({...postData, ram: e.target.value})}
                     defaultValue={detailProduct[`${item.property}`]}
                   >
                     {item.options.map((x) => (
@@ -143,11 +167,16 @@ function AdminUpdate(props) {
               ))
             : ""}
 
-          <input
+          {/* <input
             type="file"
             {...register("image")}
             onChange={handleFileImageChange}
-          ></input>
+          ></input> */}
+           <FileBase
+          type="file"
+          multiple={false}
+          onDone={({base64}) => setPostData({ ...postData,image:base64})}
+          />
           <button type="submit">Update Product</button>
         </form>
       ) : (

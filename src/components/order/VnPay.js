@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function VnPay() {
   const { order } = useSelector((state) => state.orderInfo);
-
+  const history = useHistory();
   const handleVNPay = async () => {
     const OrderPaid = {
       ...order,
@@ -22,6 +23,7 @@ export default function VnPay() {
     }
 
     localStorage.removeItem("cartItems");
+    history.push("/orderSuccess");
   };
 
   return (
