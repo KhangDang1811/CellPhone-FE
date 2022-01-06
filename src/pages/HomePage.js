@@ -14,7 +14,7 @@ function HomePage(props) {
     
     return (
         <div style={{position: 'relative'}}>
-            <Header></Header>
+            <Header ></Header>
             <Carousel></Carousel>
             <IPhone></IPhone>
             <Samsung></Samsung>

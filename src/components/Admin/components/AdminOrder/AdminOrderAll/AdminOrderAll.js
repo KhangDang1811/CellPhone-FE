@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrder, getAllOrderMonth } from "../../../../../actions/OrderAction";
 import ListOrder from "../AdminOrderUI/ListOrder";
+import NotFound from "./NotFound";
 
 function AdminOrderAll(props) {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ function AdminOrderAll(props) {
       {orders && orders.length > 0 ? (
         <ListOrder orders={orders}></ListOrder>
       ) : (
-        <h4>Không có đơn hàng</h4>
+        // <h4>Không có đơn hàng</h4>
+        <NotFound/>
       )}
     </div>
   );

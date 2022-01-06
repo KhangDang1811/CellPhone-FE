@@ -152,3 +152,6 @@
     cursor: pointer;
     
 }
+.file-base{
+    display: none !important;
+}

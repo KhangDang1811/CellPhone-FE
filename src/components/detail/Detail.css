@@ -14,9 +14,13 @@
 .detail-info{
     display: flex;
 }
+
 .detail-info-slide-image {
     border: 1px solid #eee;
     padding: 1rem 0;
+    height: 23rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .detail-info-slide-image img:hover {
@@ -199,6 +203,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .star-average{
     margin-bottom: 0;
 }
@@ -709,58 +714,88 @@
 
 .swippers{
     display: flex;
-    overflow-y: hidden;
-   overflow-x: scroll;
+    /* overflow-y: hidden;
+   overflow-x: scroll; */
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 10px 10px;
+  
+}
+
+.swippers img{
+    max-width: 315px;
+    width: -webkit-fill-available;
+    transition: transform 250ms;
+    border-radius: 8px;
+   
 }
 
 .swipper{
-   max-width: 20% !important; 
+   /* max-width: 20% !important;  */
    max-height: 16rem;
    transition: transform 450ms;
-   margin-right: 10px;
+ 
    cursor: pointer;
+   margin-left: 10px;
 }
 
 .swipper1{
-    max-width: 20% !important; 
+    /* max-width: 20% !important;  */
     max-height: 16rem;
     transition: transform 450ms;
-    margin-right: 10px;
+  
+    margin-left: 10px;
     cursor: pointer;
     border: 2px solid #c52520;
     border-radius: 8px;
+    padding: 3px;
  }
 
 .swipper:hover{
    transform: scale(1.1);
  }
 
- .swipper-left{
-    /* height: fit-content; */
-    align-self: center;
-    cursor: pointer;
-    color: white;
-   float: left;
-   border-radius: 0 100px 100px 0;
-   background-color: #444444;
-   opacity: 40%;
-   height: 60px;
- }
+.carousel-left-move{
 
- .swipper-right{
-    /* height: fit-content; */
-    opacity: 40%;
-    background-color: #444444;
-    align-self: center;
-    cursor: pointer;
-    color: white;
-    float: right;
-    border-radius: 100px 0 0 100px;
-    height: 60px;
- }
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 
- .btn{
-     margin-top: -20rem !important;
- }
+    display: flex;
+    justify-content: space-between;
+
+    transition: .4s;
+   
+}
+.prev{
+    transform: translateX(-40px);
+}
+.next{
+    transform: translateX(40px);
+}
+.detail-info-slide .prev,.detail-info-slide .next{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0.5;
+    cursor: pointer;
+    transition: .3s;
+}
+.detail-info-slide-image:hover .prev{
+    transform: translateX(0);
+    transition: .5s;
+}
+.detail-info-slide-image:hover .next{
+    transform: translateX(0);
+    transition: .5s;
+}

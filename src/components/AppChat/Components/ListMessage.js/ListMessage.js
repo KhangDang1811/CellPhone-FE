@@ -3,7 +3,7 @@ import { timeSince } from '../../../../untils';
 
 function ListMessage(props) {
     const {messages, user} = props
-  
+   
     const [openTimeSince, setOpenTimeSince] = useState({ key: "", status: false });
     const handleMouseEnter = (id) => {
         setOpenTimeSince({ key: id, status: !openTimeSince.status });
@@ -25,9 +25,23 @@ function ListMessage(props) {
                        </div>
                        ) : ("")
                    }
-                    <p  onMouseEnter={() => handleMouseEnter(message._id)}
+                   {
+                       message.message.length > 500 ? (
+                        <img 
+                        onMouseEnter={() => handleMouseEnter(message._id)}
+                        onMouseLeave={() => handleMouseLeave(message._id)}
+                        className="img-mes" src={message.message}></img>
+                          ) : (
+                            <p 
+                             onMouseEnter={() => handleMouseEnter(message._id)}
+                            onMouseLeave={() => handleMouseLeave(message._id)}
+                            >{message.message}</p>
+                            )
+                   }
+                    {/* <p  onMouseEnter={() => handleMouseEnter(message._id)}
                      onMouseLeave={() => handleMouseLeave(message._id)}
-                     >{message.message}</p>
+                     >{message.message}</p> */}
+                      {/* <img className="img-mes" src={message.message} className="time-since"></img> */}
                      {
                         user.name !== message.sender && openTimeSince.status === true && openTimeSince.key === message._id  ? (
                             <div key={id} className="time">
@@ -39,6 +53,7 @@ function ListMessage(props) {
                 </>
                 ))
             }
+          
         </div>
     );
 }

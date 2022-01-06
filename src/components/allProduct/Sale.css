@@ -196,13 +196,12 @@ p{
         padding: 0 .5rem;
     }
     .hotsale-listproduct-product{
-        width: 50%;
+        width: 45%;
     }
     .filter{
         flex-direction: column;
     }
     .filter-type button, .filter-price button {
-        
         padding: .2rem 12px;
         
     }

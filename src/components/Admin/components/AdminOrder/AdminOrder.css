@@ -128,7 +128,7 @@
   color: #1890ff;
   background: white;
   border: 1px solid #1890ff;
-
+  border-radius: 5px;
 }
 .order-menu a:hover{
   color: white;
@@ -206,4 +206,7 @@
   cursor: pointer;
   border-radius: 5px;
   background-color: #F3F4F6;
+}
+.drop{
+  margin-left: 5px;
 }

@@ -12,6 +12,10 @@ import BlogContent from './BlogContent';
 import { LeftOutlined,RightOutlined } from '@ant-design/icons';
 import Tskt from './Tskt';
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function Detail(props) {
     const dispatch = useDispatch()
     const { id } = useParams();
@@ -38,7 +42,8 @@ function Detail(props) {
         setIndex((index) =>{
             let newIndex = index + 1
             return checkIndex(newIndex);
-        })}
+        })
+    }
 
     const prevImage = () => {
         setIndex((index) =>{
@@ -51,14 +56,13 @@ function Detail(props) {
         setIndex(index1)
     }
 
-    const [openBtn, setOpenBtn] = useState(false);
-    const handleMouseEnter = () => {
-        setOpenBtn(!openBtn);
-    };
+    const settings = {
+        infinite: true,
+        slidesToShow: 5,
+        swipeToSlide: true,
+        className:"swippers"
+      };
 
-    const handleMouseLeave = () => {
-        setOpenBtn(openBtn);
-    };
     return (
         <section id="detail">
             {
@@ -69,30 +73,33 @@ function Detail(props) {
                 </div>
                 <div className="detail-info">
                     <div className="detail-info-slide">
+            
                         <div className="detail-info-slide-image">
-                            <img onMouseEnter={handleMouseEnter}
-                                 onMouseLeave={handleMouseLeave}
-                                 src={image || detailProduct.image}>
+                            <img src={image || detailProduct.image}>
                             </img>
-                            <div className="swippers">
+                          
+                       <div className='carousel-left-move'>
+                            <div className="prev">
+                            <LeftOutlined  onClick={prevImage}></LeftOutlined>
+                        </div>
+                            <div className="next" >
+                            <RightOutlined onClick={nextImage}></RightOutlined>
+                            </div>
+                        </div>
+                        </div>
+                     
+                       <Slider {...settings}>
+                       {/* <div className="swippers"> */}
                             {
                             detailProduct?.images.map((item, index1) => {
-                                return <div key={index1} className={index1 == index ? "swipper1" : "swipper"}>
-                                    <img onClick={() => renderImage(index1)} src={item}></img>
-                                </div>
+                                return<div key={index1} className={index1 == index ? "swipper1" : "swipper"}>
+                                        <img onClick={() => renderImage(index1)} src={item}></img>
+                                    </div>
+                                
                             })}
-                            </div>
-                         <div className="btn">
-                      {
-                          openBtn ? (
-                              <>
-                            <button className="swipper-left" onClick={prevImage}><LeftOutlined /></button>
-                            <button  className="swipper-right" onClick={nextImage}><RightOutlined /></button>
-                            </>
-                          ) : ("")
-                      }
-                         </div>
-                        </div>
+                            {/* </div> */}
+                        </Slider>
+
                       
                     </div>
                     <DetailInfo  product={detailProduct}></DetailInfo>

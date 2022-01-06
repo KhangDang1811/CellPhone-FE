@@ -6,15 +6,21 @@ import ListMessage from "./Components/ListMessage.js/ListMessage";
 import TypeMessage from "./Components/TypeMessage/TypeMessage";
 import './AppChat.css'
 import { LineOutlined } from '@ant-design/icons';
+import ChatUser from "./Components/ChatTyping/ChatUser";
 
 let socket;
 
 function AppChat(props) {
   const ENDPOINT = "http://localhost:5000";
   const [messages, setMessages] = useState([]);
+ 
   const [openChat, setOpenChat] = useState(false)
   const { userInfo } = useSelector((state) => state.userSignin)
 
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  // console.log('useronline: ', onlineUsers);
+ 
+  const idUser = userInfo._id;
   useEffect(() => {
     const getAllMessageByConversation = async () => {
       const {data}  = await axios.get(
@@ -30,7 +36,11 @@ function AppChat(props) {
 
     socket = io(ENDPOINT);
 
+
     socket.emit('join_conversation', userInfo._id);
+    socket?.on("getUsers", (users) => {
+      setOnlineUsers(users);
+    });
     //setup response
     socket.on('newMessage', (message) => {
      // console.log([...messages])
@@ -53,10 +63,8 @@ function AppChat(props) {
   })
 
   const handleChatFormSubmit = async (message) => {
-   // console.log(message)
+   // console.log("mes",message)
     const sender = userInfo.name;
-   // console.log(messages.length)
-
     //emit create conversation and chat
     if (messages.length === 0) {
       //console.log('create')
@@ -67,6 +75,7 @@ function AppChat(props) {
           sender,
           message,
           idConversation: conversation._id,
+         
         };
         console.log(payload)
         const {data} = await axios.post('http://localhost:5000/chat/save', payload);
@@ -105,14 +114,15 @@ function AppChat(props) {
         openChat ? (<div className="chatuser">
         <div className="chatuser-user">
           <span className="chatuser-user-name">DangKhang</span>
+          <span className={onlineUsers.includes("61c00c8432fb9a1c90fca55f" || "61950c68795a211ba4518d31") ? "chatuser-user-online" : "chatuser-user-offline"}></span>
           <span className="chatuser-user-line" onClick={() => setOpenChat(!openChat)}><LineOutlined></LineOutlined></span>
         </div>
 
         {
           messages ? (<ListMessage messages={messages} user={userInfo}></ListMessage>) : ''
         }
-
-      <TypeMessage onSubmit={handleChatFormSubmit} ></TypeMessage>
+      <ChatUser socket={socket}/>
+      <TypeMessage onSubmit={handleChatFormSubmit} socket={socket} ></TypeMessage>
 
       </div>) : ''
       }

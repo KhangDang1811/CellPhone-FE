@@ -4,11 +4,14 @@
 #carousel{
     width: 100%;
     margin-top: 1rem;
+    /* background: linear-gradient(to bottom right, #BC1919, #e6e20e); */
+    background: linear-gradient(#BC1919, yellow);
 }
 .carousel{
     width: 80%;
     margin: 0 auto;
     display: flex;
+    background-color: white;
 }
 .carousel-left{
     width: 70%;
@@ -78,6 +81,9 @@
     font-size: 13px;
     cursor: pointer;
 }
+.a1:hover{
+    border-bottom: 2px solid red;
+}
 .slick-current{
     font-weight: 600;
 }
@@ -88,6 +94,7 @@
     width: 30%;
     margin:0 auto;
     margin-left: .5rem;
+    margin-right: 5px;
 }
 .carousel-right-item{
     margin-bottom: .5rem;
@@ -114,4 +121,8 @@
     .carousel-right{
         display: none;
     }
+}
+
+.solid{
+    border-bottom: 2px solid red;
 }

@@ -5,12 +5,14 @@ import { SignoutUser,SignOutGoogle } from "../../actions/UserAction";
 import { useHistory } from "react-router";
 import { searchProduct } from "../../actions/ProductAction";
 import { Link } from "react-router-dom";
+import OutsideClickHandler from "react-outside-click-handler";
 
 import {
   DownOutlined,
   ShoppingCartOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import { async } from "@firebase/util";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -23,8 +25,9 @@ function Header(props) {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, error } = userSignin;
-  console.log("info-",userInfo);
+  // console.log("info-",userInfo);
   const [search, setSearch] = useState("");
+ 
   const cartItems = useSelector((state) => state.cart.cartItems);
   const amount = cartItems.reduce((a, b) => a + b.qty, 0);
 
@@ -35,15 +38,43 @@ function Header(props) {
     dispatch(SignoutUser());
   };
 
+ 
+  const [state, setstate] = useState(false) 
+  
   const SearchProduct = async (e) => {
+    // e.preventDefault()
+    // await history.push("/search");
+    // dispatch(searchProduct(search));
+    // setSearch('')
+   
+    if(e.target.value.length != 0){
+      dispatch(searchProduct(search));
+      setstate(true)  
+    }else{
+      setstate(false)
+    }   
+  };
+
+  const SearchProduct1 = async (e) => {
     e.preventDefault()
     await history.push("/search");
     dispatch(searchProduct(search));
     setSearch('')
+    setstate(false)
   };
 
+  const searchProduct1 = useSelector(state => state.searchProduct)
+  const {products} = searchProduct1;
+
+  const Hidehandler = () => {
+    setShowAccount(false);
+    setShowAccount2(false);
+    setstate(false)
+  };
   return (
     <div className="header">
+      <OutsideClickHandler onOutsideClick={() => Hidehandler()}>
+       
       <section id="menu">
         <div className="logo">
           <span>
@@ -51,15 +82,37 @@ function Header(props) {
           </span>
         </div>
         <div className="search">
-          <form onSubmit={(e) => SearchProduct(e)}>
+          {/* <form onSubmit={(e) => SearchProduct(e)}> */}
+          <form onChange={(e) => SearchProduct(e)}>
             <input
               type="text"
               name="search"
-              placeholder="Tìm kiếm ..."
+              placeholder="Bạn cần tìm gì ..."
               defaultValue={setSearch}
               onChange={(e) => setSearch(e.target.value)}
             ></input>
-            <SearchOutlined onClick={(e) => SearchProduct(e)}></SearchOutlined>
+            <SearchOutlined onClick={(e) => SearchProduct1(e)}></SearchOutlined>
+           {
+            state == true && products && products.length > 0 ? (<div className="search-image">
+                {
+                  products.map((product, index) => {
+                    return (
+                      <Link to={"/detail/" + product._id} key={index}
+                        onClick={() => setstate(false)}
+                      >
+                        <div >
+                          <div className="flex">
+                          <img className="test" src={product.image}></img>
+                          <p className="test-name">{product.name}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  }
+                  )
+                }
+                </div>) : ("")
+           }
             {/* <button type="submit" onClick={(e) => SearchProduct(e)}>Search</button> */}
           </form>
         </div>
@@ -128,7 +181,9 @@ function Header(props) {
           <span className="line"></span>
         </div>
       </section>
-    </div>
+     
+      </OutsideClickHandler>
+      </div>
   );
 }
 

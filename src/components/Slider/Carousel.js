@@ -29,6 +29,7 @@ function SamplePrevArrow(props) {
 
 function Carousel(props) {
   let {slider, slider1, slider2} = props
+ 
   const [nav, setNav] = useState({nav1: null, nav2: null})
 
   useEffect(() => {
@@ -42,8 +43,8 @@ function Carousel(props) {
     loop:true,
     dots: false,
     infinite: true,
-    // autoplay: true,
-    // autoplaySpeed: 2500,
+     autoplay: true,
+     autoplaySpeed: 2500,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -53,10 +54,10 @@ function Carousel(props) {
 
  
   const next = () =>  {
-    console.log(slider1)
     slider1.slickNext();
   }
   const previous = () => {
+   //console.log(slider2);
     slider2.slickPrev();
   }
 
@@ -69,19 +70,19 @@ function Carousel(props) {
                     ref={slider => (slider1 = slider)} 
                     {...settings} >
               <div key={1}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/loa-691-301-max.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/a690x300_IP-13-PRO-MAX.png"></img>
               </div>
               <div key={2}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/sennheiser690x300_13_.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/OPPO_RENO6_Z_690x300.png"></img>
               </div>
               <div key={3}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/ss-mngn-690-300-max.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/690x300_Powerport-III-Nano-20W-A2633.png"></img>
               </div>
               <div key={4}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/dd690x300_XR.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/ASUS_FLIP_690x300.png"></img>
               </div>
-              <div key={4}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/se-aw-690-300-max.png"></img>
+              <div key={5}>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/MLKK_VSMART_690x300.png"></img>
               </div>
             </Slider>
             <div className='carousel-left-move' onClick={() => previous()}>
@@ -99,22 +100,23 @@ function Carousel(props) {
                     slidesToShow={4}
                     swipeToSlide={true}
                     focusOnSelect={true}
+                  
                      >
               
-              <div>
-                TRỢ GIÁ MÙA DỊCH <br></br> Ưu đãi vô địch
+              <div className="a1">
+               IPHONE 13 PROMAX <br></br> Đu deal cùng Tết
               </div>
-              <div>
-                NOTE 20 ULTRA 5G  <br></br>  Hotsale giảm sập sàn
+              <div className="a1">
+               OPPO RENO6 Z 5G  <br></br>  Siêu sale đón Tết
               </div>
-              <div>
-              XR CHÍNH HÃNG  <br></br>  Giá mới cực tốt
+              <div className="a1">
+              SẠC ANKER 20W  <br></br>  Sạc nhanh giá rẻ
               </div>
-              <div>
-              APPLE WATCH SE  <br></br>  Mua đi chờ chi
+              <div className="a1">
+              LAPTOP ASUS FLIP  <br></br>  Học tập lí tưởng
               </div>
-              <div>
-              ĐẠI TIỆC ÂM THANH   <br></br>   Loa sale bung nóc
+              <div className="a1">
+              MÁY LỌC VSMART   <br></br>   Quà Tết ý nghĩa
               </div>
 
             </Slider>
@@ -122,13 +124,13 @@ function Carousel(props) {
         </div>
         <div className="carousel-right">
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/mn-Right_Banner_Desktop_2_.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_DienThoai.png"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/msi-RightBanner_Desktop_690x300_2_.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_Laptop.png"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/A52S-RightBanner_Desktop_4_.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_Op-Balo.png"></img>
           </div>
         </div>
       </div>

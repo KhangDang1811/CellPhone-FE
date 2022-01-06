@@ -11,9 +11,6 @@ function Contact(props) {
     const conversationList = useSelector(state => state.chat.conversationList)
     const idConversation = useSelector(state => state.chat.idConversation)
 
-    if(conversationList){
-        console.log(conversationList[0]._id)
-    }
     useEffect(() => {
         dispatch(getAllConversationList())
     }, [])

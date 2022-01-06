@@ -16,7 +16,7 @@ function RateStar(props) {
 
     const {userInfo} = useSelector(state => state.userSignin)
     const product = useSelector(state => state.getProductById.product)
-    
+  
     const countReview = product.reviews.length
     let averageRate = Math.round(product.reviews.reduce((a,c) => a + c.star, 0) / countReview)
 
@@ -46,6 +46,7 @@ function RateStar(props) {
         setStar(value)
         setShowEvalute(true)
     }
+
     return (
         
         <div className="">
@@ -91,7 +92,7 @@ function RateStar(props) {
                         {
                             existsUser ? '' : (
                         <Col span={7} style={{display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
-                            <button className='guidanhgia' onClick={() => {userInfo ? setShowRate(true) : alert('Đăng nhập đi bạn eii')}}> Gửi đánh giá </button>
+                            <button className='guidanhgia' onClick={() => {userInfo ? setShowRate(true) : alert('Đăng nhập đi bạn ơi 😊')}}> Gửi đánh giá </button>
                         </Col>)
                         }
                     </Row>

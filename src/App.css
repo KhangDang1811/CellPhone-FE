@@ -40,3 +40,16 @@
 a{
   text-decoration: none;
 }
+
+.otherEnd-actions {
+  font-size: 14px;
+  margin: 1rem;
+  border-radius: 16px;
+  padding: 0 0.5rem;
+}
+
+.otherEnd-actions > div {
+  display: flex;
+  gap: 0.2rem;
+  width: 1rem;
+}

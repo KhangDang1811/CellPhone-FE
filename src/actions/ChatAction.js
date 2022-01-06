@@ -3,7 +3,7 @@ import axios from "axios"
 export const getAllConversationList = (product) => async (dispatch) => {
     try {
         const {data} = await axios.get('http://localhost:5000/chat')
-        console.log(data)
+       
         dispatch({type: 'GET_ALL_CONVERSATION', payload: data})
     } catch (error) {
         console.log(error)

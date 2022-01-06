@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function Tskt(props) {
     const { product } = props;
-   
+  // console.log(product.tskt);
     const [showMoreBlog, setShowMoreBlog] = useState(false);
     
     return (
@@ -22,7 +22,7 @@ function Tskt(props) {
                           </tr> 
                     </tbody>
                      </table>
-                    ) : product?.tskt.slice(0,12).map((item,index) =>
+                    ) : product?.tskt.slice(0,10).map((item,index) =>
                     <table id="tskt text" >
                     <tbody  className='body-tskt'>
                         <tr>

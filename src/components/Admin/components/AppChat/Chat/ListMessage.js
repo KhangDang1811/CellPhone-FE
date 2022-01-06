@@ -22,18 +22,31 @@ function ListMessage(props) {
                             <span className={user.name === message.sender ?"time-since1" :"time-since1"}>{timeSince(new Date(message.createdAt).getTime()/1000)} trước</span>
                         </div>):("")
                     }
-                    <p  onMouseEnter={() => handleMouseEnter(message._id)}
+                      {
+                       message.message.length > 500 ? (
+                        <img 
+                        onMouseEnter={() => handleMouseEnter(message._id)}
+                        onMouseLeave={() => handleMouseLeave(message._id)}
+                        className="img-mes" src={message.message}></img>
+                          ) : (
+                            <p 
+                             onMouseEnter={() => handleMouseEnter(message._id)}
+                            onMouseLeave={() => handleMouseLeave(message._id)}
+                            >{message.message}</p>
+                            )
+                   }
+                    {/* <p  onMouseEnter={() => handleMouseEnter(message._id)}
                      onMouseLeave={() => handleMouseLeave(message._id)}
-                    >{message.message}</p>
+                    >{message.message}</p> */}
                     {
                         user.name != message.sender && openTimeSince.status === true && openTimeSince.key === message._id  ? (
                         <div className="time">
                             <span className={user.name === message.sender ?"time-since1" :"time-since1"}>{timeSince(new Date(message.createdAt).getTime()/1000)} trước</span>
                         </div>):("")
                     }
-                    
                 </div>)) : ''
             }
+            
         </div>
     );
 }

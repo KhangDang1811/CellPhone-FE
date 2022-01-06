@@ -15,6 +15,7 @@ function AdminOrder(props) {
   //   setMonth({gte:x,lt:y});
   // };
 
+  // const [month, setMonth] = useState("");
   const [month, setMonth] = useState("");
   const handleMonth = (x) => {
     setMonth(x);
@@ -78,8 +79,8 @@ function AdminOrder(props) {
           <div className="order-menu">  
           <Dropdown overlay={()=>menuShow()} >
               <Link trigger={["click"]}>
-                Month
-                <DownOutlined />
+               Tháng {month == 0 ? "All" : month} 
+                <DownOutlined className="drop"/>
                 </Link>  
           </Dropdown>
           </div>

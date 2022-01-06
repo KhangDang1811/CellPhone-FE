@@ -41,6 +41,7 @@
     text-align: left;
     font-weight: 700;
     font-size: 16px;
+    position: relative;
 }
 .chatuser-user-line{
     width: 30px;
@@ -121,4 +122,44 @@
     color: white;
     font-size: smaller;
     margin-left: 5px;
+}
+.file{
+    display: none;
+}
+
+.label{
+    align-self: center;
+    margin-left: 5px;
+}
+.img{
+    width: 15%;
+    display: block;
+}
+.img-mes{
+    width:20%;
+    border-radius: 5px;
+}
+.icon-close{
+    margin-left: -13px;
+    margin-top: -7px
+}
+.chatuser-user-online{
+    width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: limegreen;
+      position: absolute;
+      top: 10px;
+      right: 14rem;
+      border: 2px solid white;
+}
+.chatuser-user-offline{
+    width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: gray;
+      position: absolute;
+      top: 10px;
+      right: 14rem;
+      border: 2px solid white;
 }

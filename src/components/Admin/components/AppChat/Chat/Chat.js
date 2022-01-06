@@ -4,13 +4,16 @@ import io from "socket.io-client";
 import { useSelector } from "react-redux";
 import ListMessage from "./ListMessage";
 import TypeMessage from "./TypeMessage";
+import ChatUserAdmin from "./ChatUserAmin";
 
+let socket;
 function Chat(props) {
-  let socket;
+  
   const ENDPOINT = "localhost:5000";
   const [messages, setMessages] = useState([]);
   const { userInfo } = useSelector((state) => state.userSignin);
   const idConversation = useSelector((state) => state.chat.idConversation);
+  
   const nameConversation = useSelector(state => state.chat.nameConversation)
 
   useEffect(() => {
@@ -30,6 +33,11 @@ function Chat(props) {
     //console.log('csndcasucaodnoa')
     socket = io(ENDPOINT);
 
+    socket.emit('join_conversation', userInfo._id);
+    socket?.on("getUsers", (users) => {
+      console.log("admin",users);
+    });
+
     socket.emit("admin_join_conversation", idConversation);
 
     socket.on("newMessage", (message) => {
@@ -37,7 +45,9 @@ function Chat(props) {
       setMessages([...messages, message]);
     });
 
-    return () => socket.disconnect();
+   
+
+    //return () => socket.disconnect();
   });
 
   useEffect(() => {
@@ -77,8 +87,8 @@ function Chat(props) {
         ) : (
           ""
         )}
-
-        <TypeMessage onSubmit={handleFormSubmit}></TypeMessage>
+        <ChatUserAdmin socket={socket}/>
+        <TypeMessage idConversation={idConversation} socket={socket} onSubmit={handleFormSubmit}></TypeMessage>
       </div>
       
    

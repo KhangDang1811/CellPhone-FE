@@ -31,8 +31,11 @@ export const getFirstCharacterUser = (name) => {
 
 export const formatDateOrderPaypal = (timestamp) => {
         const d = new Date( timestamp );
-        // const date = d.toDateString() + "    ,   Time  :   " + d.getHours() + ":" + d.getMinutes() ;
-        const date =((d.getMonth() > 8) ? (d.getMonth() + 1) : ('0' + (d.getMonth() + 1))) + '/' + ((d.getDate() > 9) ? d.getDate() : ('0' + d.getDate())) + '/' + d.getFullYear() + "    ,   Time  :   " + d.getHours() + ":" + d.getMinutes() ;
+        // const date = d.toDateString() + "    ,   Time  :   " + d.getHours() + ":" + d.getMinutes() ;  ('0' + (d.getMonth() + 1))) + '/' + ((d.getDate() > 9)
+        // const date =((d.getMonth() > 8) ? (d.getMonth() + 1) : ('0' + (d.getMonth() + 1))) + '/' + ((d.getDate() > 9) ? d.getDate() : ('0' + d.getDate())) + '/' + d.getFullYear() + "    ,   Time  :   " + d.getHours() + ":" + d.getMinutes() ;
+        const date =((d.getMonth() > 8) ?
+        d.getDate():  ('0' + d.getDate())) + '/' + ((d.getDate() > 9) ? 
+         (d.getMonth() + 1) :  ('0' + (d.getMonth() + 1))) + '/' + d.getFullYear() + "    ,   Time  :   " + d.getHours() + ":" + d.getMinutes() ;
         return date
     } 
     

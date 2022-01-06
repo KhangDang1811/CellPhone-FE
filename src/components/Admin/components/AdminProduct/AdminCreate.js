@@ -157,87 +157,27 @@ function AdminCreate(props) {
           }
         </div> */}
 
-        {SelectList && SelectList.length > 0
-          ? SelectList?.slice(0,1).map((item) => (
-              <div className="select-type">
-                <select {...register(`${item.property}`)}
-                 onChange={(e) => setPostData({...postData, ram: e.target.value})}
-                >
-                  <option>{item.name}</option>
-                  {item.options.map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
-                </select>
-              </div>
-            ))
-          : ""}
-           {SelectList && SelectList.length > 0
-          ? SelectList?.slice(1,2).map((item) => (
-              <div className="select-type">
-                <select {...register(`${item.property}`)}
-                 onChange={(e) => setPostData({...postData, screen: e.target.value})}
-                >
-                  <option>{item.name}</option>
-                  {item.options.map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
-                </select>
-              </div>
-            ))
-          : ""}
-            {SelectList && SelectList.length > 0
-          ? SelectList?.slice(2,3).map((item) => (
-              <div className="select-type">
-                <select {...register(`${item.property}`)}
-                 onChange={(e) => setPostData({...postData, special: e.target.value})}
-                >
-                  <option>{item.name}</option>
-                  {item.options.map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
-                </select>
-              </div>
-            ))
-          : ""}
-           {SelectList && SelectList.length > 0
-          ? SelectList?.slice(3,4).map((item) => (
-              <div className="select-type">
-                <select {...register(`${item.property}`)}
-                 onChange={(e) => setPostData({...postData, color: e.target.value})}
-                >
-                  <option>{item.name}</option>
-                  {item.options.map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
-                </select>
-              </div>
-            ))
-          : ""}
-             {SelectList && SelectList.length > 0
-          ? SelectList?.slice(4,5).map((item) => (
-              <div className="select-type">
-                <select {...register(`${item.property}`)}
-                 onChange={(e) => setPostData({...postData, color: e.target.value})}
-                >
-                  <option>{item.name}</option>
-                  {item.options.map((x) => (
-                    <option value={x}>{x}</option>
-                  ))}
-                </select>
-              </div>
-            ))
-          : ""}
+
 
         {/* <input
           type="file"
           {...register("image")}
           onChange={handleFileImageChange}
         ></input> */}
+       
         <FileBase
+        
           type="file"
           multiple={false}
           onDone={({base64}) => setPostData({ ...postData,image:base64})}
         />
+       
+
+        {/* <FileBase
+          type="file"
+          multiple={false}
+          onDone={({base64}) => setPostData({ ...postData,image:base64})}
+        /> */}
         {
           postData.image && 
          (  <div>

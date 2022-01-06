@@ -11,6 +11,7 @@ import {
 import { useHistory } from "react-router-dom";
 import Payment from "./Payment";
 
+
 function Order(props) {
 
   const dispatch = useDispatch();
@@ -241,6 +242,7 @@ function Order(props) {
                   {...register("more")}
                   required
                 ></input>
+              
               </div>
             </div>
           </div>
