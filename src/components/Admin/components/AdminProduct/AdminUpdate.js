@@ -152,7 +152,7 @@ function AdminUpdate(props) {
           </div> */}
 
           {SelectList && SelectList.length > 0
-            ? SelectList.map((item) => (
+            ? SelectList.slice(0,1).map((item) => (
                 <div className="select-type">
                   <select
                     {...register(`${item.property}`)}

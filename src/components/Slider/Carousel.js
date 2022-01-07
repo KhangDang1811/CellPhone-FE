@@ -70,7 +70,7 @@ function Carousel(props) {
                     ref={slider => (slider1 = slider)} 
                     {...settings} >
               <div key={1}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/a690x300_IP-13-PRO-MAX.png"></img>
+                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/ip12den-tet-690-300-max.png"></img>
               </div>
               <div key={2}>
                 <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/OPPO_RENO6_Z_690x300.png"></img>

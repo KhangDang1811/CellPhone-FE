@@ -15,6 +15,8 @@ import ChatPage from './pages/ChatPage';
 import PaymentPage from './pages/PaymentPage';
 import OrderSuccessPage from './pages/OrderSuccessPage'
 import LoadingBox from './components/Loading/LoadingBox';
+import ResetPassPages from './pages/ResetPassPage';
+import EmailForgot from './components/ForgotPass/EmailForgot';
 
 function App() {
   return (
@@ -33,6 +35,14 @@ function App() {
         </Route>
         <Route path="/register">
           <SignupPage></SignupPage>
+        </Route>
+
+        <Route path="/forgotpassword">
+          <EmailForgot/>
+        </Route>
+
+        <Route path="/resetpassword/:token">
+          <ResetPassPages/>
         </Route>
 
         <Route path="/product">
@@ -74,6 +84,7 @@ function App() {
         <Route path='/loading'>
          <LoadingBox/>
         </Route>
+
 
       </Router>
     </div>

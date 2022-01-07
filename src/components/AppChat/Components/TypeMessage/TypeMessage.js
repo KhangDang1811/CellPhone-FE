@@ -31,7 +31,6 @@ function TypeMessage(props) {
     
     if(media !== null){
       onSubmit(media.content)
-      playSound("tiktok", true)
       setMedia(null);
     }
 
@@ -92,7 +91,7 @@ function TypeMessage(props) {
           }}
         />
          <label htmlFor="file" className="label">
-         <CameraOutlined />
+         <CameraOutlined className="camera"/>
               <input
                 className="file"
                 id="file"

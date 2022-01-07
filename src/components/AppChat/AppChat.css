@@ -127,6 +127,10 @@
     display: none;
 }
 
+.camera{
+    cursor: pointer;
+}
+
 .label{
     align-self: center;
     margin-left: 5px;

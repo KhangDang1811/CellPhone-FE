@@ -18,7 +18,7 @@ function AppChat(props) {
   const { userInfo } = useSelector((state) => state.userSignin)
 
   const [onlineUsers, setOnlineUsers] = useState([]);
-  // console.log('useronline: ', onlineUsers);
+ // console.log('useronline: ', onlineUsers);
  
   const idUser = userInfo._id;
   useEffect(() => {
@@ -114,7 +114,7 @@ function AppChat(props) {
         openChat ? (<div className="chatuser">
         <div className="chatuser-user">
           <span className="chatuser-user-name">DangKhang</span>
-          <span className={onlineUsers.includes("61c00c8432fb9a1c90fca55f" || "61950c68795a211ba4518d31") ? "chatuser-user-online" : "chatuser-user-offline"}></span>
+          <span className={onlineUsers == "61c00c8432fb9a1c90fca55f" ? "chatuser-user-online" : "chatuser-user-offline"}></span>
           <span className="chatuser-user-line" onClick={() => setOpenChat(!openChat)}><LineOutlined></LineOutlined></span>
         </div>
 

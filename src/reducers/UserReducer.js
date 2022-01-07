@@ -20,6 +20,14 @@ export const UserSignupReducer = (state = {}, action) => {
             return {...state, userInfo: action.payload };
         case 'USER_SIGNUP_FAIL':
             return {...state, error: action.payload };
+        case 'USER_RESETPASS_SUCCESS':
+            return {...state, userInfo: action.payload };
+        case 'USER_RESETPASS_FAIL':
+            return {...state, error: action.payload };
+        case 'USER_LINK_SUCCESS':
+                return {...state, userInfo: action.payload };
+        case 'USER_LINK_FAIL':
+                return {...state, error: action.payload };
         default:
             return state;
     }

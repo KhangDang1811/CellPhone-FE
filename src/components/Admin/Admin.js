@@ -19,7 +19,7 @@ function Admin(props) {
             <div className="layout__content">
 
               <div className="layout__content-main">
-                <Routes />
+                <Routes/>
               </div>
             </div>
           </div>

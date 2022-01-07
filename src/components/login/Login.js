@@ -40,10 +40,14 @@ function Login (props) {
    await dispatch(SignInGoogle())
 }
 
+const fotgotPass = () => {
+  history.push("/forgotpassword")
+}
   return (
     <div class="login-page">
       <h2> ĐĂNG NHẬP </h2>
-      <form onSubmit={handleSubmit(onSubmit)} 
+     
+           <form onSubmit={handleSubmit(onSubmit)} 
       class="form-login">
         <input {...register("email")} placeholder="Email" required></input>
         <input
@@ -65,6 +69,7 @@ function Login (props) {
         {error ? <h2>{error}</h2> : <></>}
            {/* <Link to="/register">Tạo tài khoản?</Link> */}
       </form>
+      
      
      <div className='google'>
      <button className='btn-google' onClick={() => SignInFirebase()}>
@@ -78,6 +83,7 @@ function Login (props) {
        </div>
 
        <Link to="/register" className='register'>Tạo tài khoản?</Link>
+       <div className='forgot-pass' onClick={fotgotPass}>Quên mật khẩu</div>
     </div>
   );
 }

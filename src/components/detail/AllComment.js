@@ -16,7 +16,7 @@ import { EMOJI_ICON } from "../../constants";
 function AllComment({allComment,props}) {
   const { id } = useParams();
   //const { allComment } = props;
-  console.log(allComment);
+  // console.log(allComment);
   const dispatch = useDispatch();
   const [repCmt, setRepCmt] = useState({ key: "", status: false });
   const { userInfo } = useSelector((state) => state.userSignin);
@@ -72,7 +72,7 @@ const addEmojiHanler1 = (icon) => {
               <div style={{ display: "flex" }}>
                 {comment?.isAdmin ? (
                   <div className="all-comment-info-name admin">
-                    <img src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.15752-9/259051801_203473488614542_5714197839701142783_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=FSKk0GXoOkwAX_VhKfI&_nc_ht=scontent.fsgn8-2.fna&oh=bd4c8ef53a52765cdd1254fd15a7afde&oe=61C7C5EC"></img>
+                    <img src="https://lh3.googleusercontent.com/a-/AOh14GjMbnZGl3x5R7RnziA1GhF0Z8w2izlMnBWrklJb=s96-c"></img>
                   </div>
                 ) : (
                   <div className="all-comment-info-name">

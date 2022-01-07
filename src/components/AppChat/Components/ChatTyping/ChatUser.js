@@ -18,7 +18,7 @@ const playSound = (type, sound) => {
 function ChatUser ( props ) {
    const {socket} = props;
   const [userAction, setUserAction] = useState({ isTyping: false});
-  console.log("client",userAction);
+  // console.log("client",userAction);
   const timer = useRef();
  
  

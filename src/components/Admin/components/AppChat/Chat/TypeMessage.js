@@ -67,7 +67,7 @@ function TypeMessage(props) {
         }}
       />
        <label htmlFor="file" className="label">
-         <CameraOutlined />
+         <CameraOutlined className="camera"/>
               <input
                 className="file"
                 id="file"

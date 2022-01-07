@@ -36,6 +36,15 @@ export const login = (user) => async (dispatch) => {
     }
 };
 
+export const sendLink = (user) => async (dispatch) => {
+  try {
+    const {data} = await axios.post('http://localhost:5000/user/forgotpassword', user)
+    dispatch({ type: 'USER_LINK_SUCCESS', payload: data });
+  } catch (error) {
+    console.log(error.response.data.message)
+    dispatch({ type: 'USER_LINK_FAIL', payload: error.response.data.message });
+  }
+};
 
 export const SignupUser = (user) => async (dispatch) => {
     try {
@@ -48,6 +57,19 @@ export const SignupUser = (user) => async (dispatch) => {
       console.log(error.response.data.message)
       dispatch({ type: 'USER_SIGNUP_FAIL', payload: error.response.data.message });
     }
+};
+
+export const ResetPass = (user) => async (dispatch) => {
+ 
+  try {
+    const {data} = await axios.put('http://localhost:5000/user/resetpassword', user)
+    //console.log(data)
+    //localStorage.setItem('userInfo', JSON.stringify(data));
+    dispatch({ type: 'USER_RESETPASS_SUCCESS', payload: data });
+  } catch (error) {
+    console.log(error.response.data.message)
+    dispatch({ type: 'USER_RESETPASS_FAIL', payload: error.response.data.message });
+  }
 };
 
 export const SignoutUser = (user) => async (dispatch) => {

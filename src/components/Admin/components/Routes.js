@@ -11,7 +11,8 @@ import ReviewProduct from './AdminProduct/ReviewProduct/ReviewProduct';
 import DataFilterProduct from './AdminProduct/DataFilterProduct/DataFilterProduct';
 
 
-function Routes(props) {
+function Routes() {
+   
     return (
         <Switch>
             <Route path='/admin/' exact component={Dashboard}/>

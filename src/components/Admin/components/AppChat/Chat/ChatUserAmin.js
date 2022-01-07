@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import typings from './typing.mp3';
-import { getAllConversationList } from "../../../../../actions/ChatAction";
 
 const playSound = (type, sound) => {
     const list = {
@@ -37,13 +36,6 @@ function ChatUserAdmin ( props ) {
 
   const userSignIn = useSelector((state) => state.userSignin);
   const { userInfo } = userSignIn;
-  const conversationList = useSelector(state => state.chat.conversationList)
-  const NameUserTyping =  (conversationList?.find(item => item.idUser === userInfo._id))?.nameConversation;
-
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getAllConversationList())
-}, [])
 
   return (
     <div>

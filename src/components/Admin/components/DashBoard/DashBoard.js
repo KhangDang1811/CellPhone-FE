@@ -14,8 +14,15 @@ import { formatPrice } from "../../../../untils";
 
 export default function DashBoard() {
   const orders = useSelector((state) => state?.allOrder?.order);
-  // total price of all orders
   
+  
+  // const total = orders.map((order) => {
+  //   return order.totalPrice
+  //   }).reduce((total, num) => total + num, 0);
+  
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo, error } = userSignin;
+
   return (
     <section id="dashboard">
       <div className="dashboard">
@@ -30,7 +37,7 @@ export default function DashBoard() {
           </div>
           <div className="dashboard-top-content">
             <li className="dashboard-top-content-avatar">
-              <img src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.15752-9/259051801_203473488614542_5714197839701142783_n.png?_nc_cat=110&ccb=1-5&_nc_sid=ae9488&_nc_ohc=FSKk0GXoOkwAX_VhKfI&_nc_ht=scontent.fsgn8-2.fna&oh=bd4c8ef53a52765cdd1254fd15a7afde&oe=61C7C5EC"></img>
+              <img src={userInfo?.profilepicture ? userInfo?.profilepicture : ""}></img>
               <span>DangKhang</span>
             </li>
             <li className="dashboard-top-content-bell">
@@ -70,7 +77,7 @@ export default function DashBoard() {
                 </div>
                 <div className="dashboard-middle-statistic-title">
                   {/* <span className="total">{formatPrice(totalPrice)}</span> */}
-                  <span className="total">30.000.000</span>
+                  <span className="total">9.999.999</span>
                   <span className="title">Total Income</span>
                 </div>
               </li>

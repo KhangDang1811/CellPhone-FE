@@ -20,6 +20,7 @@ export default function ChartDashBoard() {
     return
   };
   
+  
   useEffect(() => {
     dispatch(getAllOrder())
   }, [dispatch])
@@ -28,11 +29,11 @@ export default function ChartDashBoard() {
     series: [{
         name: 'Monthly bill',
         data: [
-          numberOfOrdersOnMonth(1) + allOrder?.length,
-          numberOfOrdersOnMonth(2) + 4,
-          numberOfOrdersOnMonth(3) + 7,
-          numberOfOrdersOnMonth(4)+ 5,
-          numberOfOrdersOnMonth(5)+ 3,
+          numberOfOrdersOnMonth(1) ,
+          numberOfOrdersOnMonth(2),
+          numberOfOrdersOnMonth(3) ,
+          numberOfOrdersOnMonth(4),
+          numberOfOrdersOnMonth(5),
           numberOfOrdersOnMonth(6)+ 14,
           numberOfOrdersOnMonth(7),
           numberOfOrdersOnMonth(8)+ 8,
