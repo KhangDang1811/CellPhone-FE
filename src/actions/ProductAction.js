@@ -2,10 +2,11 @@ import axios from "axios";
 import actions from './product.action'
 import {BASE_URL} from '../constants/UserConstant'
 import { axiosClient } from "../services/config.services";
+import {BaseURL} from '../untils/index';
 
 export const filterProductByType = (name) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${BASE_URL}/products/${name}`);
+    const { data } = await axios.get(`${BaseURL}/products/${name}`);
     dispatch({ type: "FILTER_PRODUCT_BY_TYPE", payload: data });
   } catch (error) {
     console.log(error);
@@ -16,7 +17,7 @@ export const filterProductByType = (name) => async (dispatch) => {
 export const filterProductByRandomField = (infoProduct) => async (dispatch) => {
   try {
     //console.log("property",infoProduct)
-    const { data } = await axios.post(`${BASE_URL}/products/filter/random`, infoProduct);
+    const { data } = await axios.post(`${BaseURL}/products/filter/random`, infoProduct);
     dispatch({ type: "FILTER_PRODUCT_BY_RANDOM_FIELD", payload: data });
   } catch (error) {
     console.log(error);
@@ -27,10 +28,19 @@ export const filterProductByRandomField = (infoProduct) => async (dispatch) => {
 
 export const getAllProduct = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:5000/products/`);
+    const { data } = await axios.get(`${BaseURL}/products/`);
     dispatch({ type: "GET_ALL_PRODUCT", payload: data });
   } catch (error) {
     dispatch({ type: "GET_ALL_PRODUCT_FAIL", payload: error.message });
+  }
+};
+
+export const getAllProductLaptop = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${BaseURL}/products/macbook`);
+    dispatch({ type: "GET_ALL_PRODUCT_LAPTOP", payload: data });
+  } catch (error) {
+    dispatch({ type: "GET_ALL_PRODUCT_FAIL_LAPTOP", payload: error.message });
   }
 };
 
@@ -73,7 +83,7 @@ export const paginationProduct = (page) => async (dispatch) => {
 export const getproductById = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/products/detail/${id}`
+      `${BaseURL}/products/detail/${id}`
     );
     dispatch({ type: "GET_PRODUCT_BY_ID", payload: data });
   } catch (error) {
@@ -94,7 +104,7 @@ export const saveProduct = (product) => async (dispatch, getState) => {
   //   if (!product.get('_id')) {
   //     console.log("create");
       const { data } = await axios.post(
-        "http://localhost:5000/products/create",
+        "${BaseURL}/products/create",
         product
         ,
         // {
@@ -108,7 +118,7 @@ export const saveProduct = (product) => async (dispatch, getState) => {
     // } else {
     //   console.log("update");
     //   const { data } = await axios.put(
-    //     `http://localhost:5000/products/update`,
+    //     `${BaseURL}/products/update`,
     //     product,
     //     {
     //       headers: {
@@ -127,7 +137,7 @@ export const saveProduct = (product) => async (dispatch, getState) => {
 export const UpdateProduct = (productId,postData) => async (dispatch, getState) => {
   try {
      const { data } = await axios.put(
-      `http://localhost:5000/products/update/${productId}`,
+      `${BaseURL}/products/update/${productId}`,
       postData
        ,
        // {
@@ -146,7 +156,7 @@ export const UpdateProduct = (productId,postData) => async (dispatch, getState) 
 export const UpdateProductDel = (postData) => async (dispatch, getState) => {
   try {
      const { data } = await axios.put(
-      "http://localhost:5000/products/updateDel",
+      `${BaseURL}/products/updateDel`,
       postData
        ,
        // {
@@ -165,7 +175,7 @@ export const UpdateProductDel = (postData) => async (dispatch, getState) => {
 export const UpdateAmountProduct = (postData) => async (dispatch, getState) => {
   try {
      const { data } = await axios.put(
-      `http://localhost:5000/products/amount`,
+      `${BaseURL}/products/amount`,
       postData
        ,
        // {
@@ -183,7 +193,7 @@ export const UpdateAmountProduct = (postData) => async (dispatch, getState) => {
 export const LikeComment = (commentId,type) => async (dispatch, getState) => {
   try {
      const { data } = await axios.put(
-      `http://localhost:5000/products/${commentId}/changelikes`,
+      `${BaseURL}/products/${commentId}/changelikes`,
       type
        ,
      );
@@ -200,7 +210,7 @@ export const DeleteProduct = (productId) => async (dispatch, getState) => {
       userSignin: { userInfo },
     } = getState();
     const { data } = await axios.delete(
-      `http://localhost:5000/products/delete/${productId}`,
+      `${BaseURL}/products/delete/${productId}`,
       {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -217,7 +227,7 @@ export const DeleteProduct = (productId) => async (dispatch, getState) => {
 export const searchProduct = (name) => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:5000/products/search/product?name=${name}`
+      `${BaseURL}/products/search/product?name=${name}`
     );
     dispatch({ type: "SEARCH_PRODUCT", payload: data });
   } catch (error) {
@@ -228,7 +238,7 @@ export const searchProduct = (name) => async (dispatch, getState) => {
 export const reviewProduct = (id, review) => async (dispatch, getState) => {
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/products/rate/${id}`,
+      `${BaseURL}/products/rate/${id}`,
       review
     );
     dispatch({ type: "REVIEW_PRODUCT", payload: data });
@@ -240,7 +250,7 @@ export const reviewProduct = (id, review) => async (dispatch, getState) => {
 export const commentProduct = (id, comment) => async (dispatch, getState) => {
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/products/comment/${id}`,
+      `${BaseURL}/products/comment/${id}`,
       comment
     );
     dispatch({ type: "COMMENT_PRODUCT", payload: data });
@@ -252,7 +262,7 @@ export const commentProduct = (id, comment) => async (dispatch, getState) => {
 export const repCommentProduct = (id, comment) => async (dispatch, getState) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/products/rep/comment/${id}`,
+        `${BaseURL}/products/rep/comment/${id}`,
         comment
       );
       dispatch({ type: "REP_COMMENT_PRODUCT", payload: data });
@@ -264,7 +274,7 @@ export const repCommentProduct = (id, comment) => async (dispatch, getState) => 
   export const pinCommentProduct = (id, comment) => async (dispatch, getState) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:5000/products/pin/comment/${id}`, comment
+        `${BaseURL}/products/pin/comment/${id}`, comment
       );
       dispatch({ type: "PIN_COMMENT_PRODUCT", payload: data });
     } catch (error) {
@@ -279,7 +289,7 @@ export const BlogProduct = (id, blog) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await axios.post(
-      `http://localhost:5000/products/blog/${id}`,
+      `${BaseURL}/products/blog/${id}`,
       blog,
       {
         headers: {

@@ -17,8 +17,13 @@ import OrderSuccessPage from './pages/OrderSuccessPage'
 import LoadingBox from './components/Loading/LoadingBox';
 import ResetPassPages from './pages/ResetPassPage';
 import EmailForgot from './components/ForgotPass/EmailForgot';
+import { useSelector } from 'react-redux';
+import NotFound from './components/Admin/components/AdminOrder/AdminOrderAll/NotFound';
+import ProductLaptop from './pages/ProductLaptop';
 
 function App() {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo, error } = userSignin;
   return (
     <div className="App">
   
@@ -45,8 +50,11 @@ function App() {
           <ResetPassPages/>
         </Route>
 
-        <Route path="/product">
+        <Route path="/product/Phone">
           <ProductPage></ProductPage>
+        </Route>
+        <Route path="/product/Laptop">
+          <ProductLaptop/>
         </Route>
         <Route path="/detail/:id">
           <DetailPage></DetailPage>
@@ -78,7 +86,9 @@ function App() {
         </Route>
 
         <Route path='/admin'>
-          <AdminPage></AdminPage>
+         {
+           userInfo?.isAdmin ? <AdminPage></AdminPage> : <NotFound/>
+         }
         </Route>
 
         <Route path='/loading'>

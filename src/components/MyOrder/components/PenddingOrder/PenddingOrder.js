@@ -10,7 +10,7 @@ import "./PenddingOrder.css";
 function PenddingOrder(props) {
   const dispatch = useDispatch();
   const { myOrdersPendding } = useSelector((state) => state.orderByUser);
-  
+  console.log(myOrdersPendding);
   const { userInfo } = useSelector((state) => state.userSignin);
 
   const orderParent = (item) => (

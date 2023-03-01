@@ -6,7 +6,7 @@ function ListUser(props) {
     const {users} = props
     console.log(users);
     return (
-        <div className="admin-user-list">
+        <div className="admin-user-list" id="list-user">
             <table>
                 <tr>
                     <th></th>

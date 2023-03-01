@@ -10,13 +10,13 @@ function ListProduct(props) {
     const currentPage = useSelector(state => state.allProduct.currentPage)
     const {pages} = useSelector(state => state.allProduct.product)
 
-    const HandleChangePage = async (number,max) => {
+    const HandleChangePage = async (number) => {
         await dispatch(paginationProduct(number))
         dispatch(editCurrentPage(number))
     }
 
     return (
-       <div className="admin-product-list">
+       <div className="admin-product-list" id="list-product-admin">
            <table>
                 <tr>
                     <th></th>

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import ListMessage from "./ListMessage";
 import TypeMessage from "./TypeMessage";
 import ChatUserAdmin from "./ChatUserAmin";
+import { BaseURL } from "../../../../../untils";
 
 let socket;
 function Chat(props) {
@@ -20,7 +21,7 @@ function Chat(props) {
     if (!idConversation) return;
     const getAllMessageByConversation = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/chat/message?idConversation=${idConversation}`
+        `${BaseURL}/chat/message?idConversation=${idConversation}`
       );
       console.log(data);
       setMessages(data.messageList);
@@ -69,7 +70,7 @@ function Chat(props) {
       idConversation,
     };
     const { data } = await axios.post(
-      "http://localhost:5000/chat/save",
+      `${BaseURL}/chat/save`,
       payload
     );
     console.log(data);

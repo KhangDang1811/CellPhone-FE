@@ -53,9 +53,11 @@ export default function FilterMenu() {
 
   const menuShow = (menuItem, arrItem) => (
     <div className="menu-show">
-      <div className="menu-show-list">
-        {arrItem.map((item) => (
+      <div className="menu-show-list"  id="0">
+        {arrItem.map((item,index) => (
           <div
+          value={item}
+           
             className={`menu-show-item`}
             onClick={() => handleClickMenuShow(item, menuItem)}
           >
@@ -113,7 +115,11 @@ export default function FilterMenu() {
 
   return (
     <div>
+      {
+        List ? (  <h3>Có {List?.length} dòng điện thoại</h3>):""
+      }
       <div className="filter-menu-firm">
+      
         {
           List ? (List.map((item) => MenuFirmProduct(item))) : ''
         }
@@ -121,6 +127,7 @@ export default function FilterMenu() {
       {/* <div className="title">
         <p>Chọn theo tiêu chí</p>
       </div> */}
+        <h3>Có {filterMenuList?.length} tiêu chí lọc điện thoại</h3>
       <div className="filter-menu">
         {
           filterMenuList && filterMenuList.length > 0 ? (filterMenuList.map((item) => filterMenuItemAntd(item))) : ''

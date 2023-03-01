@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { CheckOutlined } from '@ant-design/icons';
+import { BaseURL } from "../../untils";
 
 export default function VnPaySuccess() {
   const location = useLocation();
@@ -11,7 +12,7 @@ export default function VnPaySuccess() {
     const getResultVNPay = async () => {
       const query = location.search;
       const { data } = await axios.get(
-        `http://localhost:5000/payment/vnpay_return${query}`
+        `${BaseURL}/payment/vnpay_return${query}`
       );
       console.log(data.code);
     };

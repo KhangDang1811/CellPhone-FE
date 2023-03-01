@@ -38,12 +38,12 @@ function AllComment({allComment,props}) {
       dispatch(repCommentProduct(id, comment));
       setRepValue("");
       setRepCmt({ key: "", status: false });
-    } else alert("Đăng nhập đi bạn ơi 😊");
+    } else alert("Đăng nhập đi bạn ơi");
   };
 
   const PinComment = (comment) => {
     const UpdateComment = { ...comment, status: "pin" };
-    console.log(UpdateComment);
+    //console.log(UpdateComment);
 
     dispatch(pinCommentProduct(id, UpdateComment));
   };

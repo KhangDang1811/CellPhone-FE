@@ -12,9 +12,11 @@ function MenuOrder(props) {
   //console.log(location)
 
   const { userInfo } = useSelector((state) => state.userSignin);
+  const { myOrders } = useSelector((state) => state.orderByUser);
   const { myOrdersPendding } = useSelector((state) => state.orderByUser);
   const { myOrdersShipping } = useSelector((state) => state.orderByUser);
-
+  const { myOrdersCancel } = useSelector((state) => state.orderByUser);
+  
   useEffect(() => {
     const getAllOrderPenddingAndShippingByUser = async () => {
       await dispatch(getOrderPenddingByUser(userInfo._id));
@@ -28,6 +30,13 @@ function MenuOrder(props) {
     <div className="myorder-menu">
       <div className={location.pathname === '/myOrder' ? 'myorder-menu-item active' : 'myorder-menu-item'}>
         <Link to={'/myOrder' }>Tất cả</Link>
+        {myOrders ? (
+          <div className="myorder-menu-item-newShipping">
+            {myOrders.length}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className={location.pathname === '/myOrder/pendding' ? 'myorder-menu-item active' : 'myorder-menu-item'}>
         <Link to="/myOrder/pendding">Chờ xử lí</Link>
@@ -51,6 +60,16 @@ function MenuOrder(props) {
       </div>
       <div className={location.pathname === '/myOrder/paid' ? 'myorder-menu-item active' : 'myorder-menu-item'}>
         <Link to="/myOrder/paid">Đã giao</Link>
+      </div>
+      <div className={location.pathname === '/myOrder/Cancle' ? 'myorder-menu-item active' : 'myorder-menu-item'}>
+        <Link to={'/myOrder/Cancel' }>Đã hủy</Link>
+        {myOrdersCancel ? (
+          <div className="myorder-menu-item-newShipping">
+            {myOrdersCancel.length}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

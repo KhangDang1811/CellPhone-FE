@@ -1,12 +1,16 @@
 import axios from "axios";
+import { BaseURL } from "../untils";
 
 
 
 export const createOrderGhn = (orderId) => async (dispatch) => {
   //console.log("giao hang");
   try {
+    // const { data } = await axios.post(
+    //   `http://localhost:5000/order/update/${orderId}`
+    // );
     const { data } = await axios.post(
-      `http://localhost:5000/order/update/${orderId}`
+      `${BaseURL}/order/update/${orderId}`
     );
     dispatch({ type: "CREATE_ORDER_GHN", payload: data });
   } catch (error) {
@@ -19,8 +23,11 @@ export const createOrderGhn = (orderId) => async (dispatch) => {
 export const PrintOrderGhn = (orderId) => async (dispatch) => {
   console.log(orderId);
   try {
+    // const { data } = await axios.get(
+    //   `http://localhost:5000/order/print/${orderId}`,
+    // );
     const { data } = await axios.get(
-      `http://localhost:5000/order/print/${orderId}`,
+      `${BaseURL}/order/print/${orderId}`,
     );
       window.open(data)
     dispatch({ type: "PRINT_ORDER_GHN", payload: data });

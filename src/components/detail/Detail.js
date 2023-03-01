@@ -97,9 +97,10 @@ function Detail(props) {
                                     </div>
                                 
                             })}
+                        
                             {/* </div> */}
                         </Slider>
-
+                        <div>{detailProduct?.images.length} hình ảnh liên quan</div>
                       
                     </div>
                     <DetailInfo  product={detailProduct}></DetailInfo>

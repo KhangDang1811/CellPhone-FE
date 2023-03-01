@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Detail.css'
 
 function Tskt(props) {
     const { product } = props;
@@ -9,7 +10,7 @@ function Tskt(props) {
         <div class="block-information__box-right">
             <div class="block-technical-info">
                 <div class="box-title">
-                    <h2 class="box-title__title">Thông số kỹ thuật</h2>
+                    <h2 class="box-title__title">{product?.tskt.length} Thông số kỹ thuật</h2>
                 </div>
                 <div class="box-content">
                    {  

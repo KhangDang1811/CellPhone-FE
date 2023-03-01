@@ -53,3 +53,16 @@ a{
   gap: 0.2rem;
   width: 1rem;
 }
+
+.buy_{
+  padding: 7px 17px;
+  border-radius: 4px;
+  background: #d70018;
+  cursor:pointer;
+  color: white;
+  border: none;
+
+
+  justify-content: center;
+  align-items: center;
+}

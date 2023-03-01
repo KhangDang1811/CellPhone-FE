@@ -1,8 +1,10 @@
 .admin-product .add-product{
     display: flex;
+   
 }
 .admin-product .add-product span{
     font-size: 35px;
+    
 }
 .admin-product .add-product span:hover{
     color: #1890ff;
@@ -10,6 +12,7 @@
 }
 .admin-product-link{
     display: flex;
+   
 }
 .admin-product span{
     display: flex;
@@ -154,4 +157,32 @@
 }
 .file-base{
     display: none !important;
+}
+
+.menu-drop-admin{
+    position: absolute;
+    margin-top: -3rem;
+    margin-left: 4rem;
+    /* margin-top: .5rem; */
+    top: 100%;
+    width: 100%;
+    left: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 4px 3px 4px -5px;
+}
+.menu-drop-admin a{
+    padding: .3rem 1rem;
+    color: #333;
+}
+.menu-drop-admin a:hover{
+    background: #eee;
+    color: #333;
+    border-radius: 2px;
+}
+.menu-listadmin{
+    position: absolute;
+   margin-left: 5rem;
 }
