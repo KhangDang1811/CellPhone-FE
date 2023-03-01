@@ -103,7 +103,8 @@ p{
 .buy{
     margin-top: 20px;
 }
-.buy a{
+
+.buy_{
     padding: 7px 17px;
     border-radius: 4px;
     background: #d70018;
@@ -111,7 +112,7 @@ p{
     color: white;
     border: none;
 
-    display: flex;
+  
     justify-content: center;
     align-items: center;
 }

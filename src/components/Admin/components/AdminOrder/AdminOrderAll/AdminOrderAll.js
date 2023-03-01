@@ -28,11 +28,14 @@ function AdminOrderAll(props) {
 
   return (
     <div>
-      {orders && orders.length > 0 ? (
+      
+      {orders && orders.length > 0 ? (<>
+        <h3>Có {orders.length} đơn hàng trong tháng này</h3>
         <ListOrder orders={orders}></ListOrder>
+        </>
       ) : (
-        // <h4>Không có đơn hàng</h4>
-        <NotFound/>
+         <h4>Không có đơn hàng nào</h4>
+        // <NotFound/>
       )}
     </div>
   );

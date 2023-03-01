@@ -55,7 +55,7 @@ function Footer(props) {
                 </div>
                 <div className="footer-bot">
                     
-                    <p>Copyright © 2020 Cellphones. All rights reserved.</p>
+                    <p>Copyright 1911066597-DangChauHoangKhang-19DTHD2.</p>
                 </div>
             </div>
         </section>

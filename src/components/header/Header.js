@@ -22,10 +22,11 @@ function Header(props) {
 
   const [showAccount, setShowAccount] = useState(false);
   const [showAccount2, setShowAccount2] = useState(false);
+  const [showAccount3, setShowAccount3] = useState(false);
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, error } = userSignin;
-  // console.log("info-",userInfo);
+   //console.log("info",userInfo);
   const [search, setSearch] = useState("");
  
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -78,7 +79,7 @@ function Header(props) {
       <section id="menu">
         <div className="logo">
           <span>
-            <Link to="/"> CELLPHONES </Link>
+            <Link to="/"> CellPhones</Link>
           </span>
         </div>
         <div className="search">
@@ -118,11 +119,23 @@ function Header(props) {
         </div>
         <ul className="menu-list" id={menu ? "hidden" : ""}>
           <li className="active">
-            <Link to="/"> Trang Chủ </Link>
+            <Link to="/" className="hover"> Trang Chủ </Link>
           </li>
-          <li>
-            <Link to="/product"> Sản Phẩm </Link>
-          </li>
+          <li onClick={() => setShowAccount3(!showAccount3)}>
+            {/* <Link to="/product"> Sản Phẩm </Link> */}
+            <Link > Sản Phẩm </Link>
+            <DownOutlined style={{ fontSize: "14px" ,color:"white"}} />
+         
+          {showAccount3 ? (
+                <div className="menu-drop">
+                  <Link to="/product/Phone">Phone</Link>
+                  <Link to="/product/Laptop">Laptop</Link>
+                  <Link to="/product/Phone">Watch</Link>
+                </div>
+              ) : ("")
+              
+          }
+           </li>
           {userInfo ? (
             <li onClick={() => setShowAccount2(!showAccount2)}>
               {
@@ -134,7 +147,7 @@ function Header(props) {
                 ( <img className="profile-picture" src={userInfo.profilepicture }/>):("")
               }
              
-              <Link>
+              <Link id="name">
                 {userInfo.name || userInfo.displayName}
                 
                 <DownOutlined style={{ fontSize: "14px" }} />

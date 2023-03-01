@@ -35,8 +35,9 @@ function Cart(props) {
               Tiếp tục mua hàng
             </Link>
             <h2 className="shopping-cart-title">Giỏ hàng</h2>
+            
           </div>
-
+          <h3>Bạn có {cartItems.length} sản phẩm trong giỏ hàng</h3>
           {cartItems ? <ListProduct products={cartItems}></ListProduct> : ""}
 
           <div className="total-price">

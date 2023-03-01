@@ -1,9 +1,10 @@
 import axios from "axios"
+import { BaseURL } from "../untils"
 
 export const getAllConversationList = (product) => async (dispatch) => {
     try {
-        const {data} = await axios.get('http://localhost:5000/chat')
-       
+        // const {data} = await axios.get('http://localhost:5000/chat')
+        const {data} = await axios.get(`${BaseURL}/chat`)
         dispatch({type: 'GET_ALL_CONVERSATION', payload: data})
     } catch (error) {
         console.log(error)

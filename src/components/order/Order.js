@@ -52,9 +52,11 @@ function Order(props) {
   );
   const userInfo = useSelector((state) => state.userSignin.userInfo);
 
+  
   const onSubmit = async (data) => {
     if (!data) {
-      alert("Bạn hãy nhập đầy đủ thông tin");
+    
+     // alert("Bạn hãy nhập đầy đủ thông tin");
       return;
     }
     const Order = {
@@ -246,6 +248,7 @@ function Order(props) {
               </div>
             </div>
           </div>
+      
           <Payment></Payment>
         </form>
        

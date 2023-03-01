@@ -12,6 +12,12 @@ export const getAllProductReducer = (state = initialState, action) => {
         case 'GET_ALL_PRODUCT_FAIL':
             return {...state, error: action.payload}
 
+        case 'GET_ALL_PRODUCT_LAPTOP':
+            return {...state, product: action.payload,loading:false}
+    
+        case 'GET_ALL_PRODUCT_FAIL_LAPTOP':
+            return {...state, error: action.payload}
+
         case 'ASCENDING_PRODUCT':{
             let newList = [...state.product]
             newList = newList.sort((a,b) => b.salePrice - a.salePrice)
@@ -103,6 +109,7 @@ export const getAllProductReducer = (state = initialState, action) => {
         case 'PAGINATION_PRODUCT':
             //console.log(action.payload)
             return {...state, product: action.payload,loading:false}
+        
 
         default:
             return state

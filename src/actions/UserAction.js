@@ -1,13 +1,14 @@
 import axios from 'axios'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { BaseURL } from '../untils';
 import {authentications} from './fire'
 
 export const SignInGoogle =() => async(dispatch) => {
   const provider = new GoogleAuthProvider();
   const postData = authentications.currentUser
-  //const {data} = await axios.post('http://localhost:5000/user/google', postData)
+  //const {data} = await axios.post('${BaseURL}/user/google', postData)
   const Data = {email:postData?.email, password:postData?.auth?.config?.apiKey}
-  const {data} = await axios.post('http://localhost:5000/user/google', Data)
+  const {data} = await axios.post(`${BaseURL}/user/google`, Data)
 
     signInWithPopup(authentications, provider)
     .then(result => {
@@ -20,13 +21,13 @@ export const SignInGoogle =() => async(dispatch) => {
       dispatch({type : 'SIGN_IN_GOOGLE_ERROR', payload : error})
     }
     )
-    // await axios.post('http://localhost:5000/user/google', postData)
+    // await axios.post('${BaseURL}/user/google', postData)
 }
 
 
 export const login = (user) => async (dispatch) => {
     try {
-      const {data} = await axios.post('http://localhost:5000/user/login', user)
+      const {data} = await axios.post(`${BaseURL}/user/login`, user)
       console.log(data)
       dispatch({ type: 'USER_LOGIN_SUCCESS', payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
@@ -38,7 +39,7 @@ export const login = (user) => async (dispatch) => {
 
 export const sendLink = (user) => async (dispatch) => {
   try {
-    const {data} = await axios.post('http://localhost:5000/user/forgotpassword', user)
+    const {data} = await axios.post(`${BaseURL}/user/forgotpassword`, user)
     dispatch({ type: 'USER_LINK_SUCCESS', payload: data });
   } catch (error) {
     console.log(error.response.data.message)
@@ -48,7 +49,7 @@ export const sendLink = (user) => async (dispatch) => {
 
 export const SignupUser = (user) => async (dispatch) => {
     try {
-      const {data} = await axios.post('http://localhost:5000/user/register', user)
+      const {data} = await axios.post(`${BaseURL}/user/register`, user)
       console.log(data)
       localStorage.setItem('userInfo', JSON.stringify(data));
       dispatch({ type: 'USER_SIGNUP_SUCCESS', payload: data });
@@ -62,7 +63,7 @@ export const SignupUser = (user) => async (dispatch) => {
 export const ResetPass = (user) => async (dispatch) => {
  
   try {
-    const {data} = await axios.put('http://localhost:5000/user/resetpassword', user)
+    const {data} = await axios.put(`${BaseURL}/user/resetpassword`, user)
     //console.log(data)
     //localStorage.setItem('userInfo', JSON.stringify(data));
     dispatch({ type: 'USER_RESETPASS_SUCCESS', payload: data });
@@ -84,7 +85,7 @@ export const getAllUser = () => async (dispatch, getState) => {
     userSignin: {userInfo},
   } = getState()
   try {
-    const {data} = await  axios.get('http://localhost:5000/user')
+    const {data} = await  axios.get(`${BaseURL}/user`)
     console.log(data)
     dispatch({type: 'GET_ALL_USER', payload: data})
   } catch (error) {
@@ -97,7 +98,7 @@ export const deleteUser = (userId) => async (dispatch, getState) => {
     userSignin: {userInfo},
   } = getState()
   try {
-    const {data} = await axios.delete(`http://localhost:5000/user/delete/${userId}`)
+    const {data} = await axios.delete(`${BaseURL}/user/delete/${userId}`)
     dispatch({type: 'DELETE_USER', payload: data})
   } catch (error) {
     dispatch({type: 'DELETE_USER_FAIL', error: error.message})

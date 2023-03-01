@@ -6,6 +6,7 @@ import { createOrder, payOrder } from "../../actions/OrderAction";
 import { useHistory } from "react-router-dom";
 import VnPay from "./VnPay";
 import { UpdateAmountProduct } from "../../actions/ProductAction";
+import { BaseURL } from "../../untils";
 
 export default function Payment() {
   const history = useHistory();
@@ -28,15 +29,20 @@ export default function Payment() {
   
   const postData =  order?.orderItems.map((item) => ({id:item._id,qty:item.qty}))
   
+  const [err, setErr] = useState(false);
+  const [err1, setErr1] = useState(false);
   const SendOrderPayLater = async () => {
     //If you do not fill in the information completely, please notify the customer to fill in the information completely.
     if (!order) {
-      alert("Bạn hãy nhập đầy đủ thông tin");
+      setErr(true)
+      // alert("Bạn hãy nhập đầy đủ thông tin");
       return;
     }
     //If the phone number is not 10 characters, please notify the customer to fill in the phone number correctly.
     if (order.shippingAddress.phone.length !== 10) {
-      alert("Số điện thoại không hợp lệ");
+      setErr(false)
+      setErr1(true)
+      //alert("Số điện thoại không hợp lệ");
       return;
     }
     const OrderPaid = {
@@ -65,7 +71,7 @@ export default function Payment() {
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data } = await axios.get(
-        "http://localhost:5000/api/config/paypal"
+        `${BaseURL}/api/config/paypal`
       );
       const script = document.createElement("script");
       script.type = "text/javascript";
@@ -99,6 +105,12 @@ export default function Payment() {
         </button>
         
       </div>
+     {
+      err ?( <div>Bạn hãy nhập đầy đủ thông tin</div>): null
+     }
+      {
+      err1 ?( <div>Số điện thoại không hợp lệ</div>): null
+     }
       {choosePay.payLater ? (
         <div className="customer-order">
           <button onClick={SendOrderPayLater}>Đặt Hàng</button>
@@ -120,7 +132,7 @@ export default function Payment() {
       ) : (
         ""
       )}
-
+     
     </div>
   );
 }

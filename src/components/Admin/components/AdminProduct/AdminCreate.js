@@ -72,6 +72,7 @@ function AdminCreate(props) {
     screen: "",
   });
 
+  console.log(postData.name == "");
   const closeImage =() =>{
     postData.image = "";
     setPostData({...postData});
@@ -91,12 +92,19 @@ function AdminCreate(props) {
       });
   };
 
+  const[err,Seterr] = useState(false)
   const handleSubmit1 = () =>{
     //e.preventDefault();
-    success()
-    dispatch(saveProduct(postData));
-    dispatch(editCurrentPage(pages));
-    history.push("/admin/product");
+    if(postData.name == "" || postData.amount ==""|| postData.image == ""
+    || postData.salePrice == "" || postData.type == ""|| postData.price == ""){
+       Seterr(true)
+    }else{
+      success()
+      dispatch(saveProduct(postData));
+      dispatch(editCurrentPage(pages));
+      history.push("/admin/product");
+    }
+   
   }
 
   // const MenuFirmProduct = (item) => (
@@ -186,7 +194,9 @@ function AdminCreate(props) {
           </div>
          )
         }
-       
+       {
+        err ?(<div style={{color:"red"}}>Bạn hãy nhập đủ thông tin</div>):null
+       }
         <button type="submit"
           //onClick={HandleSubMit}
         >Add Product</button>

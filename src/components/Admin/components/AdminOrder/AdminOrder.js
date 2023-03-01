@@ -77,7 +77,7 @@ function AdminOrder(props) {
 
         <div className="filter-menu-item">
           <div className="order-menu">  
-          <Dropdown overlay={()=>menuShow()} >
+          <Dropdown trigger={["click"]} overlay={()=>menuShow()} >
               <Link trigger={["click"]}>
                Tháng {month == 0 ? "All" : month} 
                 <DownOutlined className="drop"/>

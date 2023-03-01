@@ -6,11 +6,13 @@ import {formatPrice} from '../../untils/index'
 import { message} from 'antd';
 
 function Product(props) {
-    const { product } = props;
+    const { product, index } = props;
+    
     const cartItems = useSelector((state) => state.cart.cartItems);
     const dispatch = useDispatch();
     const success = () => {
         message.success({
+            id:'SuccessId',
             content: 'Thêm vào giỏ hàng thành công',
             duration: 1,
             className: 'custom-class',
@@ -25,6 +27,7 @@ function Product(props) {
 
       const success1 = () => {
         message.warn({
+            id:'ErrorId',
             content: 'Sản phẩm đã có trong giỏ hàng',
             duration: 1,
             className: 'custom-class',
@@ -61,9 +64,11 @@ function Product(props) {
                 </div>
             </Link>
             {
-                product.percentDiscount >= 5 ? (<div className="discount">
+                product.percentDiscount >= 5 ? (<><div id={index} className="discount">
                 <p>{product.percentDiscount}%</p>
-            </div>) : ''
+            </div>
+        
+            </>) : ''
             }
             {/* <div className="buy">
                 <Link to="" onClick={(e) => {AddProductToCart(product)}}> Mua Ngay</Link>
@@ -72,7 +77,7 @@ function Product(props) {
                 product.amount === 0 ? (<div className="buy">
                 <Link to="" > Hết Hàng</Link>
             </div>) : (<div className="buy">
-                <Link to="" onClick={(e) => {AddProductToCart(product)}}> Mua Ngay</Link>
+                <button className="buy_"  onClick={(e) => {AddProductToCart(product)}}> Mua Ngay</button>
             </div>)
     
             }

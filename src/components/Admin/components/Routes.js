@@ -9,6 +9,7 @@ import AdminUser from './AdminUser/AdminUser';
 import AppChat from './AppChat/AppChat'
 import ReviewProduct from './AdminProduct/ReviewProduct/ReviewProduct';
 import DataFilterProduct from './AdminProduct/DataFilterProduct/DataFilterProduct';
+import DataFilterProductLaptop from './AdminProduct/DataFilterProductLaptop/DataFilterProductLaptop';
 
 
 function Routes() {
@@ -19,7 +20,8 @@ function Routes() {
             <Route path='/admin/customer' component={AdminUser}/>
 
             <Route path='/admin/product/create' component={AdminCreate}/>
-            <Route path='/admin/product/update/info' component={DataFilterProduct}/>
+            <Route path='/admin/product/update/info/Phone' component={DataFilterProduct}/>
+            <Route path='/admin/product/update/info/Laptop' component={DataFilterProductLaptop}/>
             <Route path='/admin/product/update/:id' component={AdminUpdate}/>
             <Route path='/admin/product/reviewProduct/:id' component={ReviewProduct}/>
             <Route path='/admin/product' component={AdminProduct}/>

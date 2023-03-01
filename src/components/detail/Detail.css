@@ -425,7 +425,7 @@
 
 
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) {
     .detail{
         width: 100%;
         justify-content: center;
@@ -438,6 +438,14 @@
         margin-top: 1rem;
         width: calc(100%);
         padding: 0 0.5rem;
+    }
+    .block-information__box-right{
+        width: calc(95%) !important;
+        margin-top: 1rem !important;
+    }
+    #blog {
+        width: 130%;
+        margin-top: 1rem;
     }
 
 }
@@ -455,6 +463,10 @@
         width: calc(100%);
         padding: 0 0.5rem;
     }
+    .block-information__box-right{
+        width: calc(95%)  !important;
+        margin-top: 1rem !important;
+    }
 
 }
 @media screen and (max-width: 500px){
@@ -470,6 +482,10 @@
     .guidanhgia{
         padding: 0.2rem 0.5rem;
         border-radius: 30px;
+    }
+    .block-information__box-right{
+        width: calc(95%)  !important;
+        margin-top: 1rem !important;
     }
 }
 
@@ -673,7 +689,7 @@
 
 /* TSKT-PRODUCT */
 .block-information__box-right{
-    width: calc(35%);
+    width: calc(30%);
     margin-left: 1rem;
     box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 7px;
@@ -751,7 +767,7 @@
  }
 
 .swipper:hover{
-   transform: scale(1.1);
+   transform: scale(1.5);
  }
 
 .carousel-left-move{

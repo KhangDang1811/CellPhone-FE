@@ -6,7 +6,7 @@ function ListOrder(props) {
     const {orders} = props
     //console.log(orders)
     return (
-       <div className="all-order">
+       <div  className="all-order">
            {
                orders.length > 0 ? orders.map(item => (<Order order={item} key={item._id}></Order>)) : ''
            }

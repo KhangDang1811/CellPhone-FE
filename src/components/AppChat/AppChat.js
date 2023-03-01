@@ -7,11 +7,12 @@ import TypeMessage from "./Components/TypeMessage/TypeMessage";
 import './AppChat.css'
 import { LineOutlined } from '@ant-design/icons';
 import ChatUser from "./Components/ChatTyping/ChatUser";
+import { BaseURL } from "../../untils";
 
 let socket;
 
 function AppChat(props) {
-  const ENDPOINT = "http://localhost:5000";
+  const ENDPOINT = `${BaseURL}`;
   const [messages, setMessages] = useState([]);
  
   const [openChat, setOpenChat] = useState(false)
@@ -24,7 +25,7 @@ function AppChat(props) {
   useEffect(() => {
     const getAllMessageByConversation = async () => {
       const {data}  = await axios.get(
-        `http://localhost:5000/chat/message?idUser=${userInfo._id}`
+        `${BaseURL}/chat/message?idUser=${userInfo._id}`
       );
       setMessages(data.messageList);
     }
@@ -78,7 +79,7 @@ function AppChat(props) {
          
         };
         console.log(payload)
-        const {data} = await axios.post('http://localhost:5000/chat/save', payload);
+        const {data} = await axios.post(`${BaseURL}/chat/save`, payload);
         //console.log(data)
         socket.emit('chat', data);
       });
@@ -92,7 +93,7 @@ function AppChat(props) {
         idConversation,
       };
       //console.log(payload, 'sdbhuca')
-      const {data} = await axios.post('http://localhost:5000/chat/save', payload)
+      const {data} = await axios.post(`${BaseURL}/chat/save`, payload)
       //console.log(data)
       socket.emit('chat', data);
     } 

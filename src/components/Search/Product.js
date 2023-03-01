@@ -3,7 +3,7 @@ import {formatPrice} from '../../untils'
 
 
 function Product(props) {
-    const { product } = props;
+    const { product, index } = props;
     function AddToCart(product) {
         // const action = AddProduct(product);
         // dispatch(action);
@@ -13,7 +13,7 @@ function Product(props) {
         <div className="hotsale-listproduct-product">
             <a href={"/detail/" + product._id}>
                 <img src={product.image}></img>
-                <p className="hotsale-listproduct-product-name">{product.name}</p>
+                <p id={index} className="hotsale-listproduct-product-name">{product.name}</p>
                 <div className="price">
                     <span className="price1">{formatPrice(product.salePrice)}đ</span>
                     <span className="price2">{formatPrice(product.price)}đ</span>

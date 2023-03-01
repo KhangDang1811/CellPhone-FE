@@ -19,6 +19,7 @@ export default function FilterMenu() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const filterMenuList = useSelector((state) => state.selectList.List);
 
+  
   useEffect(() => {
     dispatch(getAllSelectList());
   }, [dispatch]);
@@ -104,7 +105,12 @@ export default function FilterMenu() {
 
   return (
     <div>
+      
+      <div style={{marginBottom:"-48px",background:"white",padding:"0.5rem 1rem",marginLeft:"1rem"}}>
+      <h3>Có {filterMenuList?.length} tiêu chí lọc điện thoại</h3>
+      </div>
       <div className="filter-menu">
+      
         {filterMenuList && filterMenuList.length > 0
           ? filterMenuList.map((item) => filterMenuItemAntd(item))
           : ""}
@@ -124,6 +130,7 @@ export default function FilterMenu() {
                 placeholder="Property ... "
                 defaultValue={chooseSelectItem.name}
               />
+          
               <input
                 {...register("property")}
                 placeholder="Name ..."
@@ -145,8 +152,11 @@ export default function FilterMenu() {
                   </div>
                 ))}
               </div>
+             
               <span onClick={handleAddOption}>Add Options</span>
+             
               <button type="submit">Add</button>
+              
             </form>
           </Modal>
         ) : (

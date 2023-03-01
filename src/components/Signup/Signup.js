@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import {SignupUser} from '../../actions/UserAction'
 import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import { blockSpace } from '../../untils';
 
 
 function Login(props) {
@@ -17,7 +18,7 @@ function Login(props) {
         if(password === confirmPassword) {
             dispatch(SignupUser(data))            
         } else{
-            alert("🤣 Mật khẩu không trùng khớp kìa ông ơi")
+            alert("password does not match")
         }
       //   if(password === confirmPassword && password.length >= 8) {
       //     dispatch(SignupUser(data))            
@@ -40,7 +41,7 @@ function Login(props) {
     const user = useSelector((state) => state.userSignup);
    
     const { userInfo, error } = user;
-   
+
     return (
       <div className="signup-page">
         <h2>ĐĂNG KÍ</h2>
@@ -52,6 +53,7 @@ function Login(props) {
             placeholder="Email"
             type="email"
             required
+            onKeyPress={blockSpace}
           ></input>
            {error ? <p className='errors'>❎😅 {error}</p> : <></>}
           <input
@@ -61,7 +63,7 @@ function Login(props) {
             type={state? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
             // required
-            onKeyPress={(e) => {if(!e.key.match(/[a-zA-Z0-9]/)) e.preventDefault()}}
+            onKeyPress={blockSpace}
           ></input>
            <button className='show_hide_signup' onClick={() => show()}>
             {
@@ -75,7 +77,7 @@ function Login(props) {
             type={state1? "text" : "password"}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            onKeyPress={(e) => {if(!e.key.match(/[a-zA-Z0-9]/)) e.preventDefault()}}
+            onKeyPress={blockSpace}
           ></input>
           <button className='show_hide_signup' onClick={() => show1()}>
             {

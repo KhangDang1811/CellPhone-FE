@@ -17,7 +17,6 @@ function Admin(props) {
           <div className={`layout`}>
             <Sidebar />
             <div className="layout__content">
-
               <div className="layout__content-main">
                 <Routes/>
               </div>

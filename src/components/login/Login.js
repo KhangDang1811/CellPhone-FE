@@ -6,6 +6,7 @@ import {login, SignInGoogle} from '../../actions/UserAction'
 import { useHistory } from 'react-router';
 import {Link} from 'react-router-dom'
 import {EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import { blockSpace } from '../../untils';
 
 
 function Login (props) {
@@ -26,8 +27,20 @@ function Login (props) {
   const { userInfo, error } = user;
  
 
+  const login1 = () =>{
+    if(email1 == "undefined" || email1 == ""|| email1 ==null){
+      SetError2(true)
+    }else if(pass1 == "undefined"|| pass1 == ""|| pass1 ==null){
+      SetError2(true)
+    }else{
+      SetError2(false)
+    }
+  }
+
   const onSubmit = (data) => {
+   
     dispatch(login(data));
+    
   };
 
   useEffect(() => {
@@ -43,20 +56,30 @@ function Login (props) {
 const fotgotPass = () => {
   history.push("/forgotpassword")
 }
+
+const [email1,SetEmail1] = useState();
+console.log(email1);
+const [pass1,SetPass1] = useState()
+const [error2,SetError2] = useState(false)
+const [error1,SetError1] = useState("Please Fill Out this Field")
   return (
     <div class="login-page">
       <h2> ĐĂNG NHẬP </h2>
      
            <form onSubmit={handleSubmit(onSubmit)} 
       class="form-login">
-        <input {...register("email")} placeholder="Email" required></input>
+        <input {...register("email")} placeholder="Email" value={email1} required 
+        onChange={e => SetEmail1(e.target.value)}
+        onKeyPress={blockSpace}></input>
         <input
+         onChange={e => SetPass1(e.target.value)}
+          value={pass1}
           className={{positon: 'relative'}}
           {...register("password")}
           placeholder="Password"
           type={state? "text" : "password"}
           required
-          onKeyPress={(e) => {if(!e.key.match(/[a-zA-Z0-9]/)) e.preventDefault()}}
+          onKeyPress={blockSpace}
         ></input>
         <button className='show_hide' onClick={() => show()}>
        {
@@ -65,8 +88,9 @@ const fotgotPass = () => {
         </button>
       
 
-        <input type="submit" value="Đăng Nhập"></input>
+        <input type="submit" value="Đăng Nhập" onClick={() => login1()}></input>
         {error ? <h2>{error}</h2> : <></>}
+        {error2 ? <h2>{error1}</h2> : <></>}
            {/* <Link to="/register">Tạo tài khoản?</Link> */}
       </form>
       

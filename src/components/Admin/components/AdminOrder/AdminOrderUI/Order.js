@@ -28,6 +28,7 @@ function Order(props) {
     totalPrice,
     paymentMethod,
     cancelOrder,
+    statusCancel,
     shippingAddress,
     status,
     paymentResult,
@@ -180,15 +181,18 @@ function Order(props) {
             )}
 
             {
-              cancelOrder === true ? (<>
-              <span> Khách yêu cầu hủy đơn </span>
-                <button
+              cancelOrder === true ? (<>       
+                {statusCancel === true ? (
+                    <button className="shipping"> Đã hủy </button>
+                  ) : (<>
+                    <span>Khách yêu cầu hủy đơn</span>
+                    <button
                   className="shipping"
                   onClick={() => handleDeleteOrder(order)}
                 >
                   Hủy đơn
-                </button>
-
+                </button></>)
+                }
               </>) : ''
             }
 

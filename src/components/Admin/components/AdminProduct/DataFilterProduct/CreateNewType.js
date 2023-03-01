@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { CreateNewTypeProduct, getAllTypeProduct } from "../../../../../actions/ListTypeProductAction";
 import FileBase from "react-file-base64"
 import { message} from 'antd';
@@ -10,6 +10,7 @@ export default function CreateNewType() {
   const { handleSubmit, register } = useForm();
   const [image, setImage] = useState("");
 
+  const filterMenuList = useSelector((state) => state?.allTypeProduct?.List);
   const onSubmit = async (data, e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -53,6 +54,7 @@ export default function CreateNewType() {
   }
   return (
     <div className="create-type">
+      <h3>Có {filterMenuList?.length} dòng điện thoại</h3>
       <span>Create new type product</span>
       <form onSubmit={HandleSubMit}>
         <input {...register("name")} placeholder="Name ... "

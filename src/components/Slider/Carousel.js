@@ -44,7 +44,7 @@ function Carousel(props) {
     dots: false,
     infinite: true,
      autoplay: true,
-     autoplaySpeed: 2500,
+     autoplaySpeed: 1500,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -127,7 +127,7 @@ function Carousel(props) {
             <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_DienThoai.png"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_Laptop.png"></img>
+            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_DienThoai.png"></img>
           </div>
           <div className="carousel-right-item">
             <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/desk_690x300_right-banner_Op-Balo.png"></img>

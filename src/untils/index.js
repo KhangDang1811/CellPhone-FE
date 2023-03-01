@@ -6,7 +6,9 @@
         
     //     return handlePercentDiscount(newSaleProducts);
     // }
-
+//export const BaseURL = 'https://cell-phone2.herokuapp.com';
+// export const BaseURL = 'http://localhost:5000';
+export const BaseURL ='https://cell-phone-be.vercel.app';
 export const handlePercentDiscount = (products) => { 
         const newList = products.map(product => {
             const percentDiscount = 100 - Math.round(product.salePrice * 100 / product.price) ;
@@ -65,3 +67,8 @@ export const  timeSince = (date) => {
         return Math.floor(seconds) + " giây";
       }
 
+export const blockSpace = (e) => {
+        if (e.which === 32) {
+            e.preventDefault();
+        }
+    }

@@ -24,6 +24,10 @@ export const getAllOrderReducer = (state = {}, action) => {
       return { ...state, orderPaid: action.payload };
     }
 
+    case "GET_ALL_ORDER_CANCEL": {
+      return { ...state, orderPaid: action.payload };
+    }
+
     case "ORDER_CREATE_SUCCESS":
       return { ...state, order: action.payload };
 
@@ -93,6 +97,10 @@ export const getOrderByUserReducer = (state = {}, action) => {
 
     case "GET_ORDER_PAID_BY_USER": {
       return { ...state, myOrdersPaid: action.payload };
+    }
+
+    case "GET_ORDER_CANCEL_BY_USER": {
+      return { ...state, myOrdersCancel: action.payload };
     }
 
     default:

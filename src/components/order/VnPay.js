@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { BaseURL } from "../../untils";
 
 export default function VnPay() {
   const { order } = useSelector((state) => state.orderInfo);
@@ -14,7 +15,7 @@ export default function VnPay() {
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/payment/create",
+      `${BaseURL}/payment/create`,
       OrderPaid
     );
 

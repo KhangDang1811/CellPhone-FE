@@ -29,7 +29,10 @@ function AllProduct(props) {
                 <SortByPrice></SortByPrice>
                 { product && product.length > 0 ? 
                     (
+                        <>
+                        <h1>Có {product.length} sản phẩm</h1>
                     <ListProduct HotSaleProducts={handlePercentDiscount(product)}></ListProduct>
+                    </>
                    ) :  (<span>Không có sản phẩm</span>)
                 }
             </div>

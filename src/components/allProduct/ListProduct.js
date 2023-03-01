@@ -9,7 +9,7 @@ function ListProduct(props) {
         <div className="hotsale-listproduct">
             {
                 HotSaleProducts.map((product, index) => (
-                    <Product product={product} key={index}></Product>
+                    <Product product={product} index={index}></Product>
                 ))
             }
         </div>

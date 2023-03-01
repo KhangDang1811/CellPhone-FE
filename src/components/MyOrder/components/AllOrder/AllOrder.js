@@ -36,7 +36,7 @@ export const orderParent = (item) => (
 function AllOrder(props) {
   const dispatch = useDispatch();
   const { myOrders } = useSelector((state) => state.orderByUser);
-  //console.log(myOrders);
+  
   const { userInfo } = useSelector((state) => state.userSignin);
   useEffect(() => {
     dispatch(getOrderByUser(userInfo._id));

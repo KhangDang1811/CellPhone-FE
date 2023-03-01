@@ -10,19 +10,19 @@ import {
   OrderedListOutlined,
   WechatOutlined,
 } from "@ant-design/icons";
+import { getAllUser } from "../../../../actions/UserAction";
 
 function Sidebar(props) {
   const dispatch = useDispatch();
   const location = useLocation()
-  const { orderPendding } = useSelector((state) => state.allOrder);
+  const { orderPendding } = useSelector((state) => state?.allOrder);
   let totalNewOrder
   
   if(orderPendding){
-    totalNewOrder = orderPendding.length
+    totalNewOrder = orderPendding?.length
   }
 
   useEffect(() => {
-    console.log("get all order penddin");
     
     const getNewOrder = () => {
       dispatch(GetAllOrderPendding());
@@ -47,6 +47,9 @@ function Sidebar(props) {
             <UsergroupAddOutlined></UsergroupAddOutlined>
           </span>
           <p>Customer</p>
+          <div className="admin-order-new">
+                {/* {users?.length} */}10
+              </div>
         </Link>
         <Link to="/admin/product" className={'sidebar-list-item'}>
           <span>

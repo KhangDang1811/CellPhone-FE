@@ -26,7 +26,7 @@ function CommentProduct(props) {
       dispatch(commentProduct(id, comment))
       setValue('')
     }
-    else alert('Đăng nhập đi ông ơi 😊')
+    else alert('Đăng nhập đề bình luận đi ông ơi')
   }
   useEffect(() => {
     dispatch(getproductById(id))

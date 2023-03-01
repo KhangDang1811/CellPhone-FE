@@ -6,9 +6,11 @@ function ListProduct(props) {
 
     return (
         <div className="hotsale-listproduct">
+            <h1>Có {HotSaleProducts.length} sản phẩm</h1>
             {
                 HotSaleProducts.map((product, index) => (
-                    <Product product={product} key={index}></Product>
+
+                    <Product product={product} index={index}></Product>
                 ))
             }
         </div>
